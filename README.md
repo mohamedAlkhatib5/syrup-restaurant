@@ -28,15 +28,17 @@ A modern and responsive restaurant web application built with **React**, **Vite*
 
 ## 🛠️ Built With
 
-- React
+-- React 19
 - Vite
 - React Router DOM
 - React Bootstrap
 - Bootstrap 5
-- Context API
-- AOS Animation
-- Swiper.js
+- Bootstrap Icons
+- Framer Motion
+- JavaScript (ES6+)
+- HTML5
 - CSS3
+- Context API
 
 ---
 
