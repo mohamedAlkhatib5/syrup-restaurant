@@ -1,4 +1,12 @@
+
 # 🍽️ Syrup Restaurant
+
+
+
+<img width="1892" height="1080" alt="foo" src="https://github.com/user-attachments/assets/9857da8c-10f7-4379-b606-dc4070f5f7fe" />
+
+
+
 
 A modern and responsive restaurant web application built with **React**, **Vite**, and **React Bootstrap**. The project provides an elegant user experience with a modern interface, interactive menu, shopping cart, and online ordering system.
 
