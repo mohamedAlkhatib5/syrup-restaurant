@@ -8,9 +8,6 @@ A modern and responsive restaurant web application built with **React**, **Vite*
 
 🔗 **Website:** https://your-vercel-link.vercel.app
 
-📂 **GitHub Repository:** https://github.com/mohamedAlkhatib5/syrup-restaurant
-
----
 
 ## ✨ Features
 
@@ -25,16 +22,16 @@ A modern and responsive restaurant web application built with **React**, **Vite*
 - ⚡ Fast performance powered by Vite
 
 ---
+## 🛠️ Technologies & Libraries
 
-## 🛠️ Built With
-
--- React 19
+- React 19
 - Vite
 - React Router DOM
 - React Bootstrap
 - Bootstrap 5
-- Bootstrap Icons
-- Framer Motion
+- React Icons
+- Swiper.js
+- AOS (Animate On Scroll)
 - JavaScript (ES6+)
 - HTML5
 - CSS3
@@ -48,49 +45,52 @@ A modern and responsive restaurant web application built with **React**, **Vite*
 src/
 │
 ├── assets/
+│   └── images/
+│
 ├── components/
+│   ├── Footer.jsx
+│   ├── MenuCard.jsx
+│   └── Navbar.jsx
+│
 ├── context/
+│   └── CartContext.jsx
+│
 ├── data/
+│   └── menu.js
+│
 ├── pages/
+│   ├── Home.jsx
+│   ├── Menu.jsx
+│   ├── Order.jsx
+│   ├── Story.jsx
+│   ├── Contact.jsx
+│   └── NotFound.jsx
+│
+├── pages.css/
+│   ├── Home.css
+│   ├── Navbar.css
+│   ├── MenuCard.css
+│   ├── menu.css
+│   ├── order.css
+│   ├── story.css
+│   ├── Contact.css
+│   ├── footer.css
+│   └── NotFound.css
+│
 ├── App.jsx
-└── main.jsx
+├── main.jsx
+└── index.css
+
+public/
+
+index.html
+package.json
+vite.config.js
+README.mdsx
 ```
 
 ---
 
-## 🚀 Installation
-
-Clone the repository
-
-```bash
-git clone https://github.com/mohamedAlkhatib5/syrup-restaurant.git
-```
-
-Go to the project directory
-
-```bash
-cd syrup-restaurant
-```
-
-Install dependencies
-
-```bash
-npm install
-```
-
-Run the development server
-
-```bash
-npm run dev
-```
-
-Create a production build
-
-```bash
-npm run build
-```
-
----
 
 ## 📱 Responsive Design
 
