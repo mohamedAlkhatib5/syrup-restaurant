@@ -1,0 +1,100 @@
+
+
+/* =====================================================
+                      MENU CARDS
+===================================================== */
+
+.menu-card {
+    height: 100%;
+    background: #ffffff;
+    border: 1px solid #ece9e3;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(30, 37, 32, .06);
+    transition: all .35s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+}
+
+.menu-image-wrap {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.menu-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .55s ease;
+}
+
+.menu-card:hover .menu-image-wrap img {
+    transform: scale(1.08);
+}
+
+.menu-image-wrap span {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, .94);
+    color: var(--primary-dark);
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 700;
+}
+
+.menu-card-body {
+    padding: 22px;
+}
+
+.menu-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.menu-card h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.28rem;
+}
+
+.menu-card-heading strong {
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+.menu-card p {
+    min-height: 62px;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.7;
+}
+
+.menu-card-body button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    background: transparent;
+    color: var(--dark);
+    padding: 0;
+    font-weight: 700;
+}
+
+.menu-card button:hover {
+    color: var(--primary);
+}
+
+
+
+
+
+
+
+

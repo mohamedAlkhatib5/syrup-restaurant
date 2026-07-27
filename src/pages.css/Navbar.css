@@ -1,0 +1,334 @@
+/* =====================================================
+                       NAVBAR
+===================================================== */
+
+.navbar-custom {
+    padding: 18px 0;
+    background: transparent;
+    transition:
+        padding .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+    z-index: 999999;
+
+}
+
+
+/* =====================================================
+                NAVBAR AFTER SCROLLING
+===================================================== */
+
+.navbar-scrolled {
+    padding: 12px 0;
+    background: rgba(23, 32, 27, .96);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .22);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    
+}
+
+
+/* =====================================================
+                    NAVBAR LOGO
+===================================================== */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #ffffff !important;
+    font-family: "Playfair Display", serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    text-decoration: none;
+
+    transition:
+        color .3s ease,
+        transform .3s ease;
+}
+
+.brand img {
+       width: 55px;
+    height: 55px;;
+    object-fit: contain;
+    display: block;
+}
+.brand:hover {
+    color: #efb481 !important;
+
+}
+
+
+/* =====================================================
+                  NAVIGATION LINKS
+===================================================== */
+
+.navbar-nav {
+    gap: 12px;
+}
+
+.navbar-nav .nav-link {
+    position: relative;
+
+    color: rgba(255, 255, 255, .82) !important;
+
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: .5px;
+
+    padding: 10px 18px !important;
+
+    transition: color .35s ease;
+}
+
+
+/* =====================================================
+              NAVIGATION UNDERLINE
+===================================================== */
+
+.navbar-nav .nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--primary);
+
+    transform: translateX(-50%);
+
+    transition: width .35s ease;
+}
+
+
+/* =====================================================
+                   LINK HOVER
+===================================================== */
+
+.navbar-nav .nav-link:hover {
+    color: #ffffff !important;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 80%;
+}
+
+
+/* =====================================================
+                   ACTIVE LINK
+===================================================== */
+
+.navbar-nav .nav-link.active {
+    color: #ffffff !important;
+}
+
+.navbar-nav .nav-link.active::after {
+    width: 80%;
+}
+
+
+/* =====================================================
+                 NAVBAR ORDER BUTTON
+===================================================== */
+
+.order-button,
+.btn-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
+
+    background: var(--primary) !important;
+
+    border: none !important;
+
+    color: #ffffff !important;
+
+    font-weight: 600;
+
+    padding: 11px 24px;
+
+    border-radius: 40px;
+
+    transition:
+        background .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.order-button:hover,
+.btn-dark:hover {
+    background: var(--primary-dark) !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 25px rgba(217, 111, 50, .35);
+}
+
+
+.order-button b{display:grid;
+    place-items:center;
+    width:24px;
+    height:24px;
+    background:#fff;
+    color:var(--primary);
+    border-radius:50%;
+    font-size:.8rem;
+    margin-inline-start: 10px;
+}
+/* =====================================================
+                 NAVBAR TOGGLER
+===================================================== */
+
+.navbar-toggler {
+    padding: 6px;
+    border: none !important;
+
+
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+
+/* =====================================================
+                  OFFCANVAS MENU
+===================================================== */
+
+.offcanvas {
+    background: var(--dark) !important;
+    color: #ffffff;
+}
+
+.offcanvas-header {
+    padding: 22px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.offcanvas-title {
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+.offcanvas-title svg {
+    color: var(--primary);
+}
+
+.offcanvas .btn-close {
+    filter: invert(1);
+    opacity: .8;
+}
+
+.offcanvas .btn-close:hover {
+    opacity: 1;
+}
+
+.offcanvas-body {
+    display: flex;
+    align-items: center;
+}
+
+.offcanvas .nav-link {
+    color: rgba(255, 255, 255, .82) !important;
+}
+
+.offcanvas .nav-link:hover,
+.offcanvas .nav-link.active {
+    color: #ffffff !important;
+}
+
+
+/* =====================================================
+             TABLET AND MOBILE DEVICES
+===================================================== */
+
+@media (max-width: 991px) {
+
+    /* Navbar background */
+
+    .navbar-custom {
+        padding: 14px 0;
+        background: rgba(23, 32, 27, .96);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, .2);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        
+    }
+
+
+    /* Offcanvas content */
+
+    .offcanvas-body {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 20px 24px 30px;
+    }
+
+
+    /* Navigation links */
+
+    .navbar-links {
+        width: 100%;
+
+        gap: 0;
+
+        margin: 10px 0 25px !important;
+    }
+
+    .navbar-links .nav-link {
+        width: 100%;
+
+        padding: 15px 4px !important;
+
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+
+    /* Mobile underline */
+
+    .navbar-links .nav-link::after {
+        left: 4px;
+        bottom: 8px;
+
+        transform: none;
+    }
+
+    .navbar-links .nav-link:hover::after,
+    .navbar-links .nav-link.active::after {
+        width: 45px;
+    }
+
+
+    /* Order button */
+
+    .order-button,
+    .offcanvas .btn-dark {
+        width: 100%;
+
+        margin-top: auto;
+
+        padding: 13px 24px;
+    }
+
+}
