@@ -6,7 +6,7 @@ A modern and responsive restaurant web application built with **React**, **Vite*
 
 ## 🌐 Live Demo
 
-🔗 **Website:** https://your-vercel-link.vercel.app
+🔗 **Website:** https://syrup-restaurant.vercel.app/
 
 
 ## ✨ Features
