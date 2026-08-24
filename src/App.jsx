@@ -8,6 +8,7 @@ import CartDrawer from './components/CartDrawer';
 import Footer from './components/Footer';
 import MobileCartBar from './components/MobileCartBar';
 import Header from './components/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
 import RouteFallback from './components/RouteFallback';
 import ScrollToTop from './components/ScrollToTop';
 import ToastStack from './components/ToastStack';
@@ -22,6 +23,14 @@ const Contact = lazy(() => import('./pages/Contact'));
 const Cart = lazy(() => import('./pages/Cart'));
 const Checkout = lazy(() => import('./pages/Checkout'));
 const OrderConfirmation = lazy(() => import('./pages/OrderConfirmation'));
+const Login = lazy(() => import('./pages/Login'));
+const Register = lazy(() => import('./pages/Register'));
+const MyOrders = lazy(() => import('./pages/account/MyOrders'));
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
+const AdminOrders = lazy(() => import('./pages/admin/AdminOrders'));
+const AdminMenu = lazy(() => import('./pages/admin/AdminMenu'));
+const AdminMessages = lazy(() => import('./pages/admin/AdminMessages'));
+const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
@@ -43,6 +52,24 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order/:orderNumber" element={<OrderConfirmation />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/account" element={<Navigate to="/account/orders" replace />} />
+            <Route path="/account/orders" element={<MyOrders />} />
+          </Route>
+
+          <Route element={<ProtectedRoute role="admin" />}>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Navigate to="/admin/orders" replace />} />
+              <Route path="orders" element={<AdminOrders />} />
+              <Route path="menu" element={<AdminMenu />} />
+              <Route path="messages" element={<AdminMessages />} />
+              <Route path="settings" element={<AdminSettings />} />
+            </Route>
+          </Route>
 
           {/* المسار القديم قبل إعادة التسمية. */}
           <Route path="/order" element={<Navigate to="/cart" replace />} />

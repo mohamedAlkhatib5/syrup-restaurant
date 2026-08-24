@@ -1,0 +1,145 @@
+/* =====================================================
+                    CUSTOMER ACCOUNT
+===================================================== */
+
+.account-page {
+  min-height: 100vh;
+  padding: 140px 0 80px;
+  background: var(--cream);
+}
+
+.account-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.account-contact {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
+}
+
+.account-signout {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid #ddd7cc;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.account-signout:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: #ffffff;
+}
+
+.account-orders {
+  display: grid;
+  gap: 16px;
+}
+
+.account-order {
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #ebe7df;
+  border-radius: 16px;
+}
+
+.account-order > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.account-order-ref {
+  display: block;
+  color: var(--dark);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.account-order-ref:hover {
+  color: var(--primary-dark);
+}
+
+.account-order-date {
+  color: var(--muted);
+  font-size: 0.83rem;
+}
+
+.account-order ul {
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.account-order > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid #f2efe9;
+}
+
+.account-order-mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.account-order-mode svg {
+  color: var(--primary);
+}
+
+.account-order > footer strong {
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+}
+
+.account-reorder {
+  padding: 10px 22px;
+  background: var(--primary);
+  color: #ffffff;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.account-reorder:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 575.98px) {
+  .account-page {
+    padding: 110px 0 60px;
+  }
+
+  .account-order {
+    padding: 16px;
+  }
+
+  .account-order > footer {
+    justify-content: space-between;
+  }
+
+  .account-reorder {
+    flex: 1 0 100%;
+  }
+}

@@ -13,6 +13,7 @@ import {
 } from 'react-bootstrap';
 
 import '../pages.css/Navbar.css';
+import AccountMenu from './AccountMenu';
 import useCart from '../hooks/useCart';
 import useCartUI from '../hooks/useCartUI';
 
@@ -151,26 +152,30 @@ function Header() {
               </Nav.Link>
             </Nav>
 
-            {/* زر الطلب */}
+            {/* الحساب وزر الطلب */}
 
-            <Button
-              type="button"
-              variant="dark"
-              className="order-button"
-              onClick={() => {
-                handleCloseMenu();
-                openDrawer();
-              }}
-              aria-label={
-                totalItems === 1
-                  ? 'Open your basket, 1 item'
-                  : `Open your basket, ${totalItems} items`
-              }
-            >
-              <FaShoppingBag className="me-2" aria-hidden="true" />
-              Order Now
-              <b aria-hidden="true">{totalItems}</b>
-            </Button>
+            <div className="navbar-actions">
+              <AccountMenu onNavigate={handleCloseMenu} />
+
+              <Button
+                type="button"
+                variant="dark"
+                className="order-button"
+                onClick={() => {
+                  handleCloseMenu();
+                  openDrawer();
+                }}
+                aria-label={
+                  totalItems === 1
+                    ? 'Open your basket, 1 item'
+                    : `Open your basket, ${totalItems} items`
+                }
+              >
+                <FaShoppingBag className="me-2" aria-hidden="true" />
+                Order Now
+                <b aria-hidden="true">{totalItems}</b>
+              </Button>
+            </div>
           </Offcanvas.Body>
         </BootstrapNavbar.Offcanvas>
       </Container>

@@ -22,8 +22,9 @@ export async function createOrder(input) {
       cardLast4: input.payment?.last4 ?? null,
       scheduledFor: input.scheduledFor,
       notes: input.notes,
-    },
-    { auth: false }
+    }
+    // بلا { auth: false }: المسار يقبل الضيوف، لكن إن كان المستخدم
+    // مسجّلًا وجب إرسال رمزه ليُربط الطلب بحسابه ويظهر في سجله.
   );
 
   return payload.data;
