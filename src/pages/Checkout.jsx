@@ -9,12 +9,13 @@ import {
 } from 'react-icons/fa';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import { DEFAULT_SETTINGS, RESTAURANT } from '../api/config';
+import { RESTAURANT, SETTINGS_FALLBACK, fetchSettings } from '../api/settings';
 import { createOrder } from '../api/orders';
 import { authorizeCard, detectCardBrand } from '../api/payments';
 import AddressMap from '../components/AddressMap';
 import useCart from '../hooks/useCart';
 import useDocumentTitle from '../hooks/useDocumentTitle';
+import useResource from '../hooks/useResource';
 import useToast from '../hooks/useToast';
 import { formatPrice } from '../utils/currency';
 import '../pages.css/checkout.css';
@@ -68,6 +69,11 @@ function Checkout() {
   const [submitting, setSubmitting] = useState(false);
   const [placed, setPlaced] = useState(false);
 
+  // رسوم التوصيل وأوقات الانتظار يضبطها صاحب المطعم من اللوحة.
+  // الاحتياطي يمنع وميض الصفحة فارغة ريثما تصل الاستجابة.
+  const settingsResource = useResource((options) => fetchSettings(options), []);
+  const settings = settingsResource.data ?? SETTINGS_FALLBACK;
+
   const [form, setForm] = useState({
     fullName: '',
     phone: '',
@@ -83,13 +89,13 @@ function Checkout() {
   });
 
   const isDelivery = fulfilment === 'delivery';
-  const deliveryFee = isDelivery ? DEFAULT_SETTINGS.deliveryFee : 0;
+  const deliveryFee = isDelivery ? settings.deliveryFee : 0;
   const total = totalPrice + deliveryFee;
   const cardBrand = useMemo(() => detectCardBrand(form.cardNumber), [form.cardNumber]);
 
   const waitRange = isDelivery
-    ? DEFAULT_SETTINGS.estimatedDeliveryMinutes
-    : DEFAULT_SETTINGS.estimatedPickupMinutes;
+    ? settings.estimatedDeliveryMinutes
+    : settings.estimatedPickupMinutes;
 
   const setField = (name) => (event) => {
     const { value } = event.target;
@@ -245,12 +251,12 @@ function Checkout() {
                         <span className="choice-title">{title}</span>
                         <span className="choice-note">
                           {id === 'delivery'
-                            ? formatPrice(DEFAULT_SETTINGS.deliveryFee) +
+                            ? formatPrice(settings.deliveryFee) +
                               ' · ' +
-                              DEFAULT_SETTINGS.estimatedDeliveryMinutes.join('–') +
+                              settings.estimatedDeliveryMinutes.join('–') +
                               ' min'
                             : 'Free · ' +
-                              DEFAULT_SETTINGS.estimatedPickupMinutes.join('–') +
+                              settings.estimatedPickupMinutes.join('–') +
                               ' min'}
                         </span>
                       </label>

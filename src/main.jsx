@@ -9,6 +9,7 @@ import './index.css';
 import './pages.css/overlays.css';
 
 import App from './App';
+import { AuthProvider } from './context/AuthProvider';
 import { CartProvider } from './context/CartContext';
 import { CartUIProvider } from './context/CartUIProvider';
 import { ToastProvider } from './context/ToastProvider';
@@ -17,11 +18,13 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ToastProvider>
-        <CartProvider>
-          <CartUIProvider>
-            <App />
-          </CartUIProvider>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <CartUIProvider>
+              <App />
+            </CartUIProvider>
+          </CartProvider>
+        </AuthProvider>
       </ToastProvider>
     </BrowserRouter>
   </StrictMode>

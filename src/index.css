@@ -291,3 +291,86 @@ main {
     animation-duration: 2.4s;
   }
 }
+
+/* =====================================================
+              DATA STATES AND SKELETONS
+===================================================== */
+
+.data-state {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.data-state-loading {
+  min-height: 220px;
+}
+
+.data-state-icon {
+  font-size: 2.6rem;
+  color: var(--muted);
+}
+
+.data-state-icon-warning {
+  color: #c0762b;
+}
+
+.data-state h3 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+}
+
+.data-state p {
+  margin: 0;
+  max-width: 420px;
+  color: var(--muted);
+}
+
+.skeleton-block {
+  background: linear-gradient(90deg, #f0ece5 25%, #f7f4ef 50%, #f0ece5 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: skeleton-sweep 1.4s ease-in-out infinite;
+}
+
+.skeleton-image {
+  height: 230px;
+  border-radius: 0;
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-bottom: 10px;
+}
+
+.skeleton-title {
+  height: 20px;
+  width: 70%;
+  margin-bottom: 16px;
+}
+
+.skeleton-short {
+  width: 55%;
+}
+
+.skeleton-button {
+  height: 38px;
+  width: 140px;
+  margin-top: 18px;
+  border-radius: 10px;
+}
+
+@keyframes skeleton-sweep {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block {
+    animation: none;
+  }
+}

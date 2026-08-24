@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaClock } from 'react-icons/fa';
 
 import '../pages.css/Contact.css';
+import { sendContactMessage } from '../api/contact';
+import { ApiError } from '../api/client';
 import useDocumentTitle from '../hooks/useDocumentTitle';
+import useToast from '../hooks/useToast';
 
 const DETAILS = [
   { icon: FaMapMarkerAlt, title: 'Visit us', text: 'Al Majaz Waterfront, Sharjah, UAE' },
@@ -14,10 +18,51 @@ const DETAILS = [
 function Contact() {
   useDocumentTitle('Contact');
   // منع تحديث الصفحة وعرض رسالة نجاح عند إرسال النموذج.
-  const handleSubmit = (event) => {
+  const { notify } = useToast();
+  const [submitting, setSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    alert('Thank you! Your message has been sent.');
-    event.currentTarget.reset();
+
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form));
+
+    setSubmitting(true);
+    setFieldErrors({});
+
+    try {
+      await sendContactMessage({
+        fullName: String(values.fullName ?? '').trim(),
+        email: String(values.email ?? '').trim(),
+        phone: String(values.phone ?? '').trim(),
+        subject: String(values.subject ?? 'general_enquiry'),
+        message: String(values.message ?? '').trim(),
+      });
+
+      notify({
+        title: 'Message sent',
+        body: 'We will be in touch shortly.',
+        variant: 'success',
+      });
+      form.reset();
+    } catch (error) {
+      // الخادم يعيد الحقل المخالف، فنعرض الخطأ تحته مباشرة.
+      if (error instanceof ApiError && Array.isArray(error.details)) {
+        setFieldErrors(
+          Object.fromEntries(error.details.map((issue) => [issue.field, issue.message]))
+        );
+      }
+
+      notify({
+        title: 'We could not send your message',
+        body: error.message,
+        variant: 'warning',
+        duration: 6000,
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
   return (
     <>
@@ -62,6 +107,7 @@ function Contact() {
                       autoComplete="name"
                       required
                       placeholder="Your name"
+                      isInvalid={Boolean(fieldErrors.fullName)}
                     />
                   </Form.Group>
                   <Form.Group as={Col} md={6} controlId="contact-email">
@@ -72,6 +118,7 @@ function Contact() {
                       autoComplete="email"
                       required
                       placeholder="name@example.com"
+                      isInvalid={Boolean(fieldErrors.email)}
                     />
                   </Form.Group>
                   <Form.Group as={Col} md={6} controlId="contact-phone">
@@ -82,6 +129,7 @@ function Contact() {
                       inputMode="tel"
                       autoComplete="tel"
                       placeholder="+971"
+                      isInvalid={Boolean(fieldErrors.phone)}
                     />
                   </Form.Group>
                   <Form.Group as={Col} md={6} controlId="contact-subject">
@@ -101,11 +149,16 @@ function Contact() {
                       rows={6}
                       required
                       placeholder="How can we help?"
+                      isInvalid={Boolean(fieldErrors.message)}
                     />
                   </Form.Group>
                   <Col xs={12}>
-                    <button className="btn-primary-custom border-0" type="submit">
-                      Send message
+                    <button
+                      className="btn-primary-custom border-0"
+                      type="submit"
+                      disabled={submitting}
+                    >
+                      {submitting ? 'Sending…' : 'Send message'}
                     </button>
                   </Col>
                 </Row>

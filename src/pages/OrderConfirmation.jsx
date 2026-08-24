@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 
-import { RESTAURANT } from '../api/config';
+import { RESTAURANT } from '../api/settings';
 import { getOrderByNumber } from '../api/orders';
 import RouteFallback from '../components/RouteFallback';
 import useDocumentTitle from '../hooks/useDocumentTitle';

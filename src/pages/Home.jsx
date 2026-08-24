@@ -10,8 +10,11 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { fetchMenuItems } from '../api/menu';
+import DataState from '../components/DataState';
 import MenuCard from '../components/MenuCard';
-import { menuItems } from '../data/menu';
+import MenuCardSkeleton from '../components/MenuCardSkeleton';
+import useResource from '../hooks/useResource';
 // img
 import heroimg from '../assets/images/heroimg.webp';
 import storysmall from '../assets/images/storysmall.webp';
@@ -43,6 +46,10 @@ const FEATURES = [
 
 function Home() {
   useDocumentTitle('Home');
+
+  // أطباق مختارة للسلايدر. تُجلب من الخادم مثل بقية القائمة.
+  const favourites = useResource((options) => fetchMenuItems(options), []);
+  const dishes = (favourites.data ?? []).slice(0, 8);
 
   return (
     <main className="page">
@@ -150,64 +157,82 @@ function Home() {
           </Row>
 
           {/* السلايدر */}
-          <Swiper
-            modules={[Autoplay, Pagination]}
-            slidesPerView={1}
-            slidesPerGroup={1}
-            spaceBetween={20}
-            speed={800}
-
-            // لا تستخدم loop مع أربع شرائح فقط
-            loop={false}
-
-            // يعود لأول شريحة بعد الوصول للنهاية
-            rewind={true}
-
-            pagination={{
-              clickable: true,
-            }}
-
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-
-            breakpoints={{
-              0: {
-                slidesPerView: 1,
-                spaceBetween: 15,
-              },
-
-              576: {
-                slidesPerView: 1.4,
-                spaceBetween: 18,
-              },
-
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-
-              992: {
-                slidesPerView: 2.5,
-                spaceBetween: 24,
-              },
-
-              1200: {
-                slidesPerView: 4,
-                spaceBetween: 24,
-              },
-            }}
-
-            className="favourites-swiper pb-5"
+          <DataState
+            isLoading={favourites.isLoading}
+            error={favourites.error}
+            isEmpty={dishes.length === 0}
+            onRetry={favourites.reload}
+            skeleton={
+              <Row className="g-4">
+                {Array.from({ length: 4 }, (_, index) => (
+                  <Col md={6} lg={3} key={index}>
+                    <MenuCardSkeleton />
+                  </Col>
+                ))}
+              </Row>
+            }
+            emptyTitle="The menu is being updated"
+            emptyBody="Please check back in a moment."
           >
-            {menuItems.map((item) => (
-              <SwiperSlide key={item.id} className="h-auto">
-                <MenuCard item={item} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              slidesPerView={1}
+              slidesPerGroup={1}
+              spaceBetween={20}
+              speed={800}
+
+              // لا تستخدم loop مع أربع شرائح فقط
+              loop={false}
+
+              // يعود لأول شريحة بعد الوصول للنهاية
+              rewind={true}
+
+              pagination={{
+                clickable: true,
+              }}
+
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                  spaceBetween: 15,
+                },
+
+                576: {
+                  slidesPerView: 1.4,
+                  spaceBetween: 18,
+                },
+
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+
+                992: {
+                  slidesPerView: 2.5,
+                  spaceBetween: 24,
+                },
+
+                1200: {
+                  slidesPerView: 4,
+                  spaceBetween: 24,
+                },
+              }}
+
+              className="favourites-swiper pb-5"
+            >
+              {dishes.map((item) => (
+                <SwiperSlide key={item.id} className="h-auto">
+                  <MenuCard item={item} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </DataState>
 
           {/* زر المنيو */}
           <Row className="mt-4">
