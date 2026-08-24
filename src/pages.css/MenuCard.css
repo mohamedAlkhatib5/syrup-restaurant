@@ -1,100 +1,139 @@
-
-
 /* =====================================================
-                      MENU CARDS
+                    MENU CARD
+   تنسيقات مكوّن MenuCard. كانت موزّعة في Home.css،
+   ما جعل صفحة Menu تعتمد ضمنيًا على تحميل Home.css.
 ===================================================== */
 
-.menu-card {
-    height: 100%;
-    background: #ffffff;
-    border: 1px solid #ece9e3;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 12px 35px rgba(30, 37, 32, .06);
-    transition: all .35s ease;
+/* زر الإضافة */
+.dish-content button {
+  width: fit-content;
+  margin-top: auto;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dark);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-weight: 700;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
-.menu-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow);
+/* وصف الطبق */
+.dish-description {
+  margin-bottom: 1rem;
+  color: #6b716d;
+  font-size: 0.95rem;
+  line-height: 1.75;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
-.menu-image-wrap {
-    position: relative;
+/* السعر */
+.dish-price {
+  flex-shrink: 0;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+/* اسم الطبق */
+.dish-name {
+  min-width: 0;
+  color: #17201b;
+  font-family: 'Playfair Display', serif;
+  line-height: 1.4;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* محتوى الكارد */
+.dish-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+/* تصنيف الطبق */
+.dish-category {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 9px 14px;
+  color: #ffffff;
+  background-color: var(--primary);
+}
+
+.dish-item:hover .dish-image {
+  transform: scale(1.08);
+}
+
+/* الصورة */
+.dish-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* حاوية الصورة */
+.dish-image-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  height: 230px;
+  overflow: hidden;
+}
+
+/* الكارد */
+.dish-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid rgba(23, 32, 27, 0.08);
+  border-radius: 22px;
+  overflow: hidden;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+@media (max-width: 767.98px) {
+  .dish-image-wrapper {
     height: 250px;
-    overflow: hidden;
+  }
 }
 
-.menu-image-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .55s ease;
+@media (max-width: 575.98px) {
+  .dish-image-wrapper {
+    height: 220px;
+  }
+
+  .dish-content {
+    padding: 1.25rem;
+  }
 }
 
-.menu-card:hover .menu-image-wrap img {
-    transform: scale(1.08);
+.dish-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 45px rgba(23, 32, 27, 0.14);
 }
 
-.menu-image-wrap span {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: rgba(255, 255, 255, .94);
-    color: var(--primary-dark);
-    padding: 7px 12px;
-    border-radius: 999px;
-    font-size: .72rem;
-    font-weight: 700;
+.dish-content button:hover {
+  color: #ffffff;
+  background-color: var(--dark);
+  border-color: var(--dark);
+  transform: translateY(-2px);
 }
-
-.menu-card-body {
-    padding: 22px;
-}
-
-.menu-card-heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.menu-card h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.28rem;
-}
-
-.menu-card-heading strong {
-    color: var(--primary);
-    white-space: nowrap;
-}
-
-.menu-card p {
-    min-height: 62px;
-    color: var(--muted);
-    font-size: .9rem;
-    line-height: 1.7;
-}
-
-.menu-card-body button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border: 0;
-    background: transparent;
-    color: var(--dark);
-    padding: 0;
-    font-weight: 700;
-}
-
-.menu-card button:hover {
-    color: var(--primary);
-}
-
-
-
-
-
-
-
-

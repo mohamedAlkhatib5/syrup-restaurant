@@ -1,27 +1,69 @@
-import { Container, Row, Col, Form } from 'react-bootstrap'
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaClock } from 'react-icons/fa'
+import { useState } from 'react';
+import { Container, Row, Col, Form } from 'react-bootstrap';
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaClock } from 'react-icons/fa';
 
 import '../pages.css/Contact.css';
-// title
-import { useEffect } from 'react'
-import { useCart } from '../context/CartContext'
+import { sendContactMessage } from '../api/contact';
+import { ApiError } from '../api/client';
+import useDocumentTitle from '../hooks/useDocumentTitle';
+import useToast from '../hooks/useToast';
+
+const DETAILS = [
+  { icon: FaMapMarkerAlt, title: 'Visit us', text: 'Al Majaz Waterfront, Sharjah, UAE' },
+  { icon: FaPhoneAlt, title: 'Call us', text: '+971 50 123 4567' },
+  { icon: FaEnvelope, title: 'Email us', text: 'syrup@gmail.com' },
+  { icon: FaClock, title: 'Opening hours', text: 'Daily, 11:00 AM – 1:00 AM' },
+];
 
 function Contact() {
-
-
-  // title
-  const { setPageTitle } = useCart()
-  useEffect(() => {
-    setPageTitle('Contact')
-  }, [setPageTitle])
-  // *************
+  useDocumentTitle('Contact');
   // منع تحديث الصفحة وعرض رسالة نجاح عند إرسال النموذج.
-  const handleSubmit = event => { event.preventDefault(); alert('Thank you! Your message has been sent.'); event.currentTarget.reset() }
-  const details = [
-    [<FaMapMarkerAlt />, 'Visit us', 'Al Majaz Waterfront, Sharjah, UAE'],
-    [<FaPhoneAlt />, 'Call us', '+971 50 123 4567'],
-    [<FaEnvelope />, 'Email us', 'syrup@gmail.com'],
-    [<FaClock />, 'Opening hours', 'Daily, 11:00 AM – 1:00 AM']]
+  const { notify } = useToast();
+  const [submitting, setSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form));
+
+    setSubmitting(true);
+    setFieldErrors({});
+
+    try {
+      await sendContactMessage({
+        fullName: String(values.fullName ?? '').trim(),
+        email: String(values.email ?? '').trim(),
+        phone: String(values.phone ?? '').trim(),
+        subject: String(values.subject ?? 'general_enquiry'),
+        message: String(values.message ?? '').trim(),
+      });
+
+      notify({
+        title: 'Message sent',
+        body: 'We will be in touch shortly.',
+        variant: 'success',
+      });
+      form.reset();
+    } catch (error) {
+      // الخادم يعيد الحقل المخالف، فنعرض الخطأ تحته مباشرة.
+      if (error instanceof ApiError && Array.isArray(error.details)) {
+        setFieldErrors(
+          Object.fromEntries(error.details.map((issue) => [issue.field, issue.message]))
+        );
+      }
+
+      notify({
+        title: 'We could not send your message',
+        body: error.message,
+        variant: 'warning',
+        duration: 6000,
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <>
       <section className="page-header">
@@ -38,39 +80,86 @@ function Contact() {
               <div className="contact-info" data-aos="fade-right">
                 <span className="eyebrow dark">We would love to hear from you</span>
                 <h2 className="display-title">Your table is waiting.</h2>
-                <p>For reservations, private dining and large orders, contact our team or send us a message.</p>
-                {details.map(([icon, title, text]) =>
+                <p>
+                  For reservations, private dining and large orders, contact our team or
+                  send us a message.
+                </p>
+                {DETAILS.map(({ icon: Icon, title, text }) => (
                   <div className="contact-item" key={title}>
-                    <div className='icon-item'>{icon}</div>
-                    <div className='item'>
+                    <div className="icon-item">
+                      <Icon />
+                    </div>
+                    <div className="item">
                       <h4>{title}</h4>
                       <p>{text}</p>
                     </div>
-                  </div>)}</div>
+                  </div>
+                ))}
+              </div>
             </Col>
             <Col lg={7}>
               <Form className="contact-form" onSubmit={handleSubmit} data-aos="fade-left">
                 <Row className="g-3">
-                  <Col md={6}>
+                  <Form.Group as={Col} md={6} controlId="contact-full-name">
                     <Form.Label>Full name</Form.Label>
-                    <Form.Control required placeholder="Your name" />
-                  </Col>
-                  <Col md={6}>
+                    <Form.Control
+                      name="fullName"
+                      autoComplete="name"
+                      required
+                      placeholder="Your name"
+                      isInvalid={Boolean(fieldErrors.fullName)}
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col} md={6} controlId="contact-email">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control required type="email" placeholder="name@example.com" /></Col>
-                  <Col md={6}><Form.Label>Phone number</Form.Label><Form.Control placeholder="+971" /></Col>
-                  <Col md={6}><Form.Label>Subject</Form.Label><Form.Select>
-                    <option>Table reservation</option>
-                    <option>Private event</option>
-                    <option>Large order</option>
-                    <option>General enquiry</option>
-                  </Form.Select>
-                  </Col>
-                  <Col xs={12}>
+                    <Form.Control
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      placeholder="name@example.com"
+                      isInvalid={Boolean(fieldErrors.email)}
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col} md={6} controlId="contact-phone">
+                    <Form.Label>Phone number</Form.Label>
+                    <Form.Control
+                      name="phone"
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      placeholder="+971"
+                      isInvalid={Boolean(fieldErrors.phone)}
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col} md={6} controlId="contact-subject">
+                    <Form.Label>Subject</Form.Label>
+                    <Form.Select name="subject" defaultValue="table_reservation">
+                      <option value="table_reservation">Table reservation</option>
+                      <option value="private_event">Private event</option>
+                      <option value="large_order">Large order</option>
+                      <option value="general_enquiry">General enquiry</option>
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group as={Col} xs={12} controlId="contact-message">
                     <Form.Label>Message</Form.Label>
-                    <Form.Control as="textarea" rows={6} required placeholder="How can we help?" /></Col>
+                    <Form.Control
+                      name="message"
+                      as="textarea"
+                      rows={6}
+                      required
+                      placeholder="How can we help?"
+                      isInvalid={Boolean(fieldErrors.message)}
+                    />
+                  </Form.Group>
                   <Col xs={12}>
-                    <button className="btn-primary-custom border-0" type="submit">Send message</button>
+                    <button
+                      className="btn-primary-custom border-0"
+                      type="submit"
+                      disabled={submitting}
+                    >
+                      {submitting ? 'Sending…' : 'Send message'}
+                    </button>
                   </Col>
                 </Row>
               </Form>
@@ -79,6 +168,6 @@ function Contact() {
         </Container>
       </section>
     </>
-  )
+  );
 }
-export default Contact
+export default Contact;

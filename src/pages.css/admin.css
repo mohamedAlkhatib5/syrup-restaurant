@@ -1,0 +1,569 @@
+/* =====================================================
+                   ADMIN DASHBOARD
+   واجهة تُستخدم على جهاز لوحي في المطبخ: أهداف لمس كبيرة،
+   تباين عالٍ، وأقل عدد نقرات ممكن لكل إجراء.
+===================================================== */
+
+.admin-shell {
+  min-height: 100vh;
+  padding: 120px 0 70px;
+  background: var(--cream);
+}
+
+.admin-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.admin-eyebrow {
+  display: block;
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.admin-header h1 {
+  margin: 4px 0 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+
+.admin-who {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* --------------------------- التبويبات --------------------------- */
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 26px;
+  padding-bottom: 4px;
+}
+
+.admin-tabs a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: #ffffff;
+  border: 1px solid #e4dfd5;
+  border-radius: 999px;
+  color: var(--dark);
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.admin-tabs a:hover {
+  border-color: var(--primary);
+}
+
+.admin-tabs a.is-active {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: #ffffff;
+}
+
+/* ---------------------------- الأدوات ---------------------------- */
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.admin-filters button {
+  padding: 9px 17px;
+  background: #ffffff;
+  border: 1px solid #e4dfd5;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-filters button.is-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.admin-count {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* --------------------------- لوح الطلبات -------------------------- */
+
+.order-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 18px;
+}
+
+.order-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #ebe7df;
+  border-left: 5px solid #d9d4c9;
+  border-radius: 16px;
+}
+
+.order-card.status-pending {
+  border-left-color: var(--primary);
+}
+
+.order-card.status-preparing {
+  border-left-color: #2f80ed;
+}
+
+.order-card.status-delivering {
+  border-left-color: #7b61ff;
+}
+
+.order-card.status-completed {
+  border-left-color: #2f9e5f;
+}
+
+.order-card.status-cancelled {
+  border-left-color: #b53a2b;
+  opacity: 0.72;
+}
+
+.order-card > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.order-ref {
+  display: block;
+  font-size: 0.98rem;
+  letter-spacing: 0.03em;
+}
+
+.order-time {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.status-pill {
+  padding: 4px 11px;
+  background: var(--cream);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-pill.status-pending {
+  background: #fbf1dc;
+  color: #8a6413;
+}
+
+.status-pill.status-preparing {
+  background: #e4eefb;
+  color: #1e5aa8;
+}
+
+.status-pill.status-delivering {
+  background: #ebe7fd;
+  color: #4b34c4;
+}
+
+.status-pill.status-completed {
+  background: #e3f3e9;
+  color: #216e43;
+}
+
+.status-pill.status-cancelled {
+  background: #fbe8e5;
+  color: #8f2c20;
+}
+
+.order-lines {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.order-lines li,
+.account-order li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 9px;
+  padding: 5px 0;
+  font-size: 0.92rem;
+}
+
+.order-lines .qty,
+.account-order .qty {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.order-note {
+  margin: 0 0 12px;
+  padding: 9px 12px;
+  background: var(--cream);
+  border-radius: 9px;
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
+.order-meta {
+  margin: 0 0 14px;
+  padding: 12px 0 0;
+  border-top: 1px solid #f2efe9;
+}
+
+.order-meta > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.order-meta dt {
+  flex: 0 0 auto;
+  margin: 2px 0 0;
+  color: var(--primary);
+  font-size: 0.85rem;
+}
+
+.order-meta dd {
+  margin: 0;
+  color: var(--dark);
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.order-card > footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #f2efe9;
+}
+
+.order-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.order-total span {
+  color: var(--muted);
+  font-size: 0.83rem;
+}
+
+.order-total strong {
+  font-size: 1.12rem;
+  color: var(--primary-dark);
+}
+
+.order-actions {
+  display: flex;
+  gap: 9px;
+}
+
+.btn-advance,
+.admin-save {
+  padding: 11px 20px;
+  background: var(--dark);
+  color: #ffffff;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-advance {
+  flex: 1;
+}
+
+.btn-advance:hover:not(:disabled),
+.admin-save:hover:not(:disabled) {
+  background: #101a14;
+}
+
+.btn-advance:disabled,
+.admin-save:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.btn-cancel {
+  padding: 11px 18px;
+  background: transparent;
+  border: 1px solid #e6cfc9;
+  border-radius: 999px;
+  color: #b53a2b;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-cancel:hover:not(:disabled) {
+  background: #fdf1ee;
+}
+
+/* --------------------------- اللوحات --------------------------- */
+
+.admin-panel {
+  max-width: 760px;
+  margin-bottom: 26px;
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid #ebe7df;
+  border-radius: 18px;
+}
+
+.admin-panel h2 {
+  margin-bottom: 18px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+}
+
+.admin-panel hr {
+  margin: 26px 0;
+  border-color: #f0ece5;
+}
+
+.admin-hint {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.admin-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.admin-panel-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.admin-save-inline {
+  padding: 9px 18px;
+  font-size: 0.9rem;
+}
+
+/* -------------------------- جدول الأطباق ------------------------- */
+
+.dish-table {
+  display: grid;
+  gap: 10px;
+}
+
+.dish-row {
+  display: grid;
+  grid-template-columns: 52px 1fr auto auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 1px solid #ebe7df;
+  border-radius: 14px;
+}
+
+.dish-row img {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.dish-row-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dish-row-main strong {
+  font-size: 0.96rem;
+  overflow-wrap: anywhere;
+}
+
+.dish-row-main span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.dish-row-price {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.availability {
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.availability.is-on {
+  background: #e3f3e9;
+  color: #216e43;
+}
+
+.availability.is-off {
+  background: #f1efea;
+  color: var(--muted);
+}
+
+.dish-row-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.dish-row-actions button,
+.message-list header button {
+  padding: 7px 14px;
+  background: var(--cream);
+  border: 1px solid #e4dfd5;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dish-row-actions button:hover:not(:disabled),
+.message-list header button:hover {
+  background: var(--dark);
+  color: #ffffff;
+}
+
+/* --------------------------- الرسائل --------------------------- */
+
+.message-list {
+  display: grid;
+  gap: 12px;
+}
+
+.message-list article {
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #ebe7df;
+  border-left: 4px solid var(--primary);
+  border-radius: 14px;
+}
+
+.message-list article.is-read {
+  border-left-color: #ddd7cc;
+  opacity: 0.82;
+}
+
+.message-list header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.message-subject {
+  display: block;
+  color: var(--primary-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.message-body {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.message-list footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 10px;
+  border-top: 1px solid #f2efe9;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.message-list footer a {
+  color: var(--primary-dark);
+}
+
+/* =====================================================
+              TABLET AND MOBILE DEVICES
+===================================================== */
+
+@media (max-width: 767.98px) {
+  .admin-shell {
+    padding-top: 100px;
+  }
+
+  .order-board {
+    grid-template-columns: 1fr;
+  }
+
+  .dish-row {
+    grid-template-columns: 52px 1fr;
+    grid-template-areas:
+      'image main'
+      'price availability'
+      'actions actions';
+    gap: 10px 14px;
+  }
+
+  .dish-row img {
+    grid-area: image;
+  }
+
+  .dish-row-main {
+    grid-area: main;
+  }
+
+  .dish-row-price {
+    grid-area: price;
+  }
+
+  .availability {
+    grid-area: availability;
+    justify-self: start;
+  }
+
+  .dish-row-actions {
+    grid-area: actions;
+  }
+
+  .admin-panel {
+    padding: 18px;
+  }
+}

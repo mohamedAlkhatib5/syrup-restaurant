@@ -1,79 +1,77 @@
 /* =====================================================
                     ROOT VARIABLES
 ===================================================== */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+@import './assets/fonts/fonts.css';
 
 :root {
-  
-    --primary: #C89B3C;
+  --primary: #c89b3c;
 
-  
-    --primary-dark: #A97A1F;
+  --primary-dark: #a97a1f;
 
+  --gold-light: #e5c26b;
 
-    --gold-light: #E5C26B;
+  --dark: #1b2a22;
+  --dark-soft: #2a3d33;
 
-  
-  --dark: #1B2A22;
---dark-soft: #2A3D33;
-    
-    --cream: #F6F4EF;
+  --cream: #f6f4ef;
 
-   
-    --muted: #7D847F;
-    --white: #FFFFFF;
+  --muted: #7d847f;
+  --white: #ffffff;
 
-    --shadow: 0 22px 60px rgba(0,0,0,.18);
+  --shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
 }
-
 
 /* =====================================================
                     GLOBAL 
 ===================================================== */
 
 * {
-    box-sizing: border-box;
-  
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+
+  /* النافبار ثابت ويحمل backdrop-filter، ما يجعله containing block
+     لعناصر position: fixed — فيدخل الـ Offcanvas المخفي (المُزاح خارج
+     الشاشة) في حساب عرض الصفحة. overflow-x: clip يقصّه دون أن يحوّل
+     html إلى حاوية تمرير، بخلاف overflow: hidden. */
+  overflow-x: clip;
 }
 
 body {
-    margin: 0;
-    font-family: "DM Sans", sans-serif;
-    background: #ffffff;
-    color: var(--dark);
-    overflow-x: hidden;
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: #ffffff;
+  color: var(--dark);
+  overflow-x: clip;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 img {
-    display: block;
-    max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
 
 main {
-    min-height: 70vh;
+  min-height: 70vh;
 }
 
-
 .eyebrow {
-    display: inline-block;
-    color: var(--primary);
-    text-transform: uppercase;
-    letter-spacing: .16em;
-    font-size: .78rem;
-    font-weight: 700;
-    margin-bottom: 16px;
+  display: inline-block;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
 .eyebrow.dark {
-    color: var(--primary);
+  color: var(--primary);
 }
 
 .hero h1,
@@ -81,198 +79,298 @@ main {
 .section-title h2,
 .page-header h1,
 .cta-section h2 {
-    font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .section-padding {
-    padding: 110px 0;
+  padding: 110px 0;
 }
-
-
 
 /* =====================================================
                      PAGE HEADER
 ===================================================== */
 
 .page-header {
-    position: relative;
-    padding: 190px 0 110px;
-    color: #ffffff;
-    text-align: center;
-    background:
-        linear-gradient(
-            rgba(16, 24, 19, .72),
-            rgba(16, 24, 19, .8)
-        ),
-        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85")
-        center / cover;
+  position: relative;
+  padding: 190px 0 110px;
+  color: #ffffff;
+  text-align: center;
+  background:
+    linear-gradient(rgba(16, 24, 19, 0.72), rgba(16, 24, 19, 0.8)),
+    url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85')
+      center / cover;
 }
 
 .page-header h1 {
-    font-size: clamp(3rem, 6vw, 5.2rem);
+  font-size: clamp(3rem, 6vw, 5.2rem);
 }
 
 .page-header p {
-    color: rgba(255, 255, 255, .75);
-    font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.05rem;
 }
-
-
-
-
 
 /* =====================================================
               TABLET AND MOBILE DEVICES
 ===================================================== */
 
 @media (max-width: 991px) {
+  /* Navbar */
 
-    /* Navbar */
+  .navbar-custom {
+    padding: 15px 0;
+    background: rgba(21, 21, 21, 0.96);
+  }
 
-    .navbar-custom {
-        padding: 15px 0;
-        background: rgba(21, 21, 21, .96);
-    }
+  .navbar-nav {
+    gap: 4px;
+  }
 
-    .navbar-nav {
-        gap: 4px;
-    }
+  .navbar-nav .nav-link {
+    padding: 12px 0 !important;
+  }
 
-    .navbar-nav .nav-link {
-        padding: 12px 0 !important;
-    }
+  .btn-dark {
+    width: 100%;
+    margin-top: 20px;
+  }
 
-    .btn-dark {
-        width: 100%;
-        margin-top: 20px;
-    }
+  /* Hero */
 
-    /* Hero */
+  .hero {
+    text-align: center;
+  }
 
-    .hero {
-        text-align: center;
-    }
+  .hero p {
+    margin-inline: auto;
+  }
 
-    .hero p {
-        margin-inline: auto;
-    }
+  .hero-actions,
+  .hero-stats {
+    justify-content: center;
+  }
 
-    .hero-actions,
-    .hero-stats {
-        justify-content: center;
-    }
+  .hero-image-frame {
+    max-width: 650px;
+    margin: auto;
+    padding: 20px;
+  }
 
-    .hero-image-frame {
-        max-width: 650px;
-        margin: auto;
-        padding: 20px;
-    }
+  .hero-food-image {
+    height: 500px;
+  }
 
-    .hero-food-image {
-        height: 500px;
-    }
+  .floating-card {
+    left: 25%;
+  }
 
-    .floating-card {
-        left: 25%;
-    }
+  /* Sections */
 
-    /* Sections */
+  .section-padding {
+    padding: 80px 0;
+  }
 
-    .section-padding {
-        padding: 80px 0;
-    }
+  .story-grid {
+    padding-right: 30px;
+  }
 
-    .story-grid {
-        padding-right: 30px;
-    }
+  /* Order page */
 
-    /* Order page */
+  .order-item {
+    grid-template-columns: 75px 1fr auto;
+  }
 
-    .order-item {
-        grid-template-columns: 75px 1fr auto;
-    }
+  .order-item > strong,
+  .delete-btn {
+    grid-column: auto;
+  }
 
-    .order-item > strong,
-    .delete-btn {
-        grid-column: auto;
-    }
-
-    .quantity {
-        grid-column: 2;
-    }
-
+  .quantity {
+    grid-column: 2;
+  }
 }
-
 
 /* =====================================================
                     SMALL MOBILE
 ===================================================== */
 
 @media (max-width: 576px) {
+  /* Hero */
 
-    /* Hero */
+  .hero h1 {
+    font-size: 3.4rem;
+  }
 
-    .hero h1 {
-        font-size: 3.4rem;
-    }
+  .hero-food-image {
+    height: 400px;
+  }
 
-    .hero-food-image {
-        height: 400px;
-    }
+  .hero-stats {
+    gap: 18px;
+  }
 
-    .hero-stats {
-        gap: 18px;
-    }
+  .hero-stats span {
+    font-size: 0.68rem;
+  }
 
-    .hero-stats span {
-        font-size: .68rem;
-    }
+  .floating-card {
+    bottom: 35px;
+  }
 
-    .floating-card {
-        bottom: 35px;
-    }
+  /* Story section */
 
-    /* Story section */
+  .story-main {
+    height: 420px;
+  }
 
-    .story-main {
-        height: 420px;
-    }
+  .story-small {
+    width: 170px;
+    height: 200px;
+  }
 
-    .story-small {
-        width: 170px;
-        height: 200px;
-    }
+  /* Contact form */
 
-    /* Contact form */
+  .contact-form {
+    padding: 25px;
+  }
 
-    .contact-form {
-        padding: 25px;
-    }
+  /* Order page */
 
-    /* Order page */
+  .order-item {
+    grid-template-columns: 70px 1fr;
+  }
 
-    .order-item {
-        grid-template-columns: 70px 1fr;
-    }
+  .order-item img {
+    width: 70px;
+    height: 65px;
+  }
 
-    .order-item img {
-        width: 70px;
-        height: 65px;
-    }
+  .order-item > strong,
+  .delete-btn {
+    grid-column: auto;
+  }
 
-    .order-item > strong,
-    .delete-btn {
-        grid-column: auto;
-    }
+  .quantity {
+    grid-column: 2;
+  }
 
-    .quantity {
-        grid-column: 2;
-    }
+  /* Page header */
 
-    /* Page header */
+  .page-header {
+    padding: 150px 0 80px;
+  }
+}
 
-    .page-header {
-        padding: 150px 0 80px;
-    }
+/* =====================================================
+              ROUTE LOADING FALLBACK
+===================================================== */
 
+.route-fallback {
+  display: grid;
+  place-items: center;
+  min-height: 60vh;
+}
+
+.route-fallback-spinner {
+  width: 42px;
+  height: 42px;
+  border: 3px solid rgba(200, 155, 60, 0.25);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: route-fallback-spin 0.8s linear infinite;
+}
+
+@keyframes route-fallback-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-fallback-spinner {
+    animation-duration: 2.4s;
+  }
+}
+
+/* =====================================================
+              DATA STATES AND SKELETONS
+===================================================== */
+
+.data-state {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.data-state-loading {
+  min-height: 220px;
+}
+
+.data-state-icon {
+  font-size: 2.6rem;
+  color: var(--muted);
+}
+
+.data-state-icon-warning {
+  color: #c0762b;
+}
+
+.data-state h3 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+}
+
+.data-state p {
+  margin: 0;
+  max-width: 420px;
+  color: var(--muted);
+}
+
+.skeleton-block {
+  background: linear-gradient(90deg, #f0ece5 25%, #f7f4ef 50%, #f0ece5 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: skeleton-sweep 1.4s ease-in-out infinite;
+}
+
+.skeleton-image {
+  height: 230px;
+  border-radius: 0;
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-bottom: 10px;
+}
+
+.skeleton-title {
+  height: 20px;
+  width: 70%;
+  margin-bottom: 16px;
+}
+
+.skeleton-short {
+  width: 55%;
+}
+
+.skeleton-button {
+  height: 38px;
+  width: 140px;
+  margin-top: 18px;
+  border-radius: 10px;
+}
+
+@keyframes skeleton-sweep {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block {
+    animation: none;
+  }
 }

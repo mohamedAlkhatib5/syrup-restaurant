@@ -23,3 +23,11 @@ pnpm-debug.log*
 # System files
 .DS_Store
 Thumbs.db
+# لقطات الفحص
+screenshots/
+
+# Playwright
+test-results/
+playwright-report/
+
+.vercel

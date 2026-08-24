@@ -1,25 +1,47 @@
 {
-  "name": "pizza-navbar-vite",
+  "name": "syrup-restaurant",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "verify": "node scripts/verify-site.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "verify:admin": "node scripts/verify-admin.mjs",
+    "build:demo": "vite build",
+    "preview:demo": "vite preview",
+    "verify:demo": "node scripts/verify-demo.mjs"
   },
   "dependencies": {
     "aos": "^2.3.4",
     "bootstrap": "^5.3.8",
+    "leaflet": "^1.9.4",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.18.1",
+    "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.18.2",
     "swiper": "^14.0.6"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@playwright/test": "^1.62.1",
     "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.4",
+    "globals": "^17.11.0",
+    "prettier": "^3.9.6",
+    "sharp": "^0.35.3",
     "vite": "^7.0.0"
-  }
+  },
+  "description": "Modern restaurant web app — menu, cart and online ordering."
 }

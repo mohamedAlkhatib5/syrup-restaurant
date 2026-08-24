@@ -3,136 +3,126 @@
 ===================================================== */
 
 .navbar-custom {
-    padding: 18px 0;
-    background: transparent;
-    transition:
-        padding .35s ease,
-        background .35s ease,
-        box-shadow .35s ease;
-    z-index: 999999;
-
+  padding: 18px 0;
+  background: transparent;
+  transition:
+    padding 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+  z-index: 999999;
 }
-
 
 /* =====================================================
                 NAVBAR AFTER SCROLLING
 ===================================================== */
 
 .navbar-scrolled {
-    padding: 12px 0;
-    background: rgba(23, 32, 27, .96);
-    box-shadow: 0 10px 35px rgba(0, 0, 0, .22);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    
+  padding: 12px 0;
+  background: rgba(23, 32, 27, 0.96);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
-
 
 /* =====================================================
                     NAVBAR LOGO
 ===================================================== */
 
 .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-    color: #ffffff !important;
-    font-family: "Playfair Display", serif;
-    font-size: 1.7rem;
-    font-weight: 700;
-    letter-spacing: 2px;
+  color: #ffffff !important;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
 
-    text-decoration: none;
+  text-decoration: none;
 
-    transition:
-        color .3s ease,
-        transform .3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .brand img {
-       width: 55px;
-    height: 55px;;
-    object-fit: contain;
-    display: block;
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  display: block;
 }
 .brand:hover {
-    color: #efb481 !important;
-
+  color: #efb481 !important;
 }
-
 
 /* =====================================================
                   NAVIGATION LINKS
 ===================================================== */
 
 .navbar-nav {
-    gap: 12px;
+  gap: 12px;
 }
 
 .navbar-nav .nav-link {
-    position: relative;
+  position: relative;
 
-    color: rgba(255, 255, 255, .82) !important;
+  color: rgba(255, 255, 255, 0.82) !important;
 
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: .5px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 
-    padding: 10px 18px !important;
+  padding: 10px 18px !important;
 
-    transition: color .35s ease;
+  transition: color 0.35s ease;
 }
-
 
 /* =====================================================
               NAVIGATION UNDERLINE
 ===================================================== */
 
 .navbar-nav .nav-link::after {
-    content: "";
+  content: '';
 
-    position: absolute;
+  position: absolute;
 
-    left: 50%;
-    bottom: 0;
+  left: 50%;
+  bottom: 0;
 
-    width: 0;
-    height: 2px;
+  width: 0;
+  height: 2px;
 
-    background: var(--primary);
+  background: var(--primary);
 
-    transform: translateX(-50%);
+  transform: translateX(-50%);
 
-    transition: width .35s ease;
+  transition: width 0.35s ease;
 }
-
 
 /* =====================================================
                    LINK HOVER
 ===================================================== */
 
 .navbar-nav .nav-link:hover {
-    color: #ffffff !important;
+  color: #ffffff !important;
 }
 
 .navbar-nav .nav-link:hover::after {
-    width: 80%;
+  width: 80%;
 }
-
 
 /* =====================================================
                    ACTIVE LINK
 ===================================================== */
 
 .navbar-nav .nav-link.active {
-    color: #ffffff !important;
+  color: #ffffff !important;
 }
 
 .navbar-nav .nav-link.active::after {
-    width: 80%;
+  width: 80%;
 }
-
 
 /* =====================================================
                  NAVBAR ORDER BUTTON
@@ -140,195 +130,272 @@
 
 .order-button,
 .btn-dark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    white-space: nowrap;
+  white-space: nowrap;
 
-    background: var(--primary) !important;
+  background: var(--primary) !important;
 
-    border: none !important;
+  border: none !important;
 
-    color: #ffffff !important;
+  color: #ffffff !important;
 
-    font-weight: 600;
+  font-weight: 600;
 
-    padding: 11px 24px;
+  padding: 11px 24px;
 
-    border-radius: 40px;
+  border-radius: 40px;
 
-    transition:
-        background .35s ease,
-        transform .35s ease,
-        box-shadow .35s ease;
+  transition:
+    background 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .order-button:hover,
 .btn-dark:hover {
-    background: var(--primary-dark) !important;
+  background: var(--primary-dark) !important;
 
-    color: #ffffff !important;
+  color: #ffffff !important;
 
-    transform: translateY(-3px);
+  transform: translateY(-3px);
 
-    box-shadow: 0 12px 25px rgba(217, 111, 50, .35);
+  box-shadow: 0 12px 25px rgba(217, 111, 50, 0.35);
 }
 
-
-.order-button b{display:grid;
-    place-items:center;
-    width:24px;
-    height:24px;
-    background:#fff;
-    color:var(--primary);
-    border-radius:50%;
-    font-size:.8rem;
-    margin-inline-start: 10px;
+.order-button b {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  color: var(--primary);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  margin-inline-start: 10px;
 }
 /* =====================================================
                  NAVBAR TOGGLER
 ===================================================== */
 
 .navbar-toggler {
-    padding: 6px;
-    border: none !important;
-
-
+  padding: 6px;
+  border: none !important;
 }
 
 .navbar-toggler:focus {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .navbar-toggler-icon {
-    filter: invert(1);
+  filter: invert(1);
 }
-
 
 /* =====================================================
                   OFFCANVAS MENU
 ===================================================== */
 
 .offcanvas {
-    background: var(--dark) !important;
-    color: #ffffff;
+  background: var(--dark) !important;
+  color: #ffffff;
 }
 
 .offcanvas-header {
-    padding: 22px 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, .08);
+  padding: 22px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .offcanvas-title {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    color: #ffffff;
+  color: #ffffff;
 
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .offcanvas-title svg {
-    color: var(--primary);
+  color: var(--primary);
 }
 
 .offcanvas .btn-close {
-    filter: invert(1);
-    opacity: .8;
+  filter: invert(1);
+  opacity: 0.8;
 }
 
 .offcanvas .btn-close:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .offcanvas-body {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .offcanvas .nav-link {
-    color: rgba(255, 255, 255, .82) !important;
+  color: rgba(255, 255, 255, 0.82) !important;
 }
 
 .offcanvas .nav-link:hover,
 .offcanvas .nav-link.active {
-    color: #ffffff !important;
+  color: #ffffff !important;
 }
-
 
 /* =====================================================
              TABLET AND MOBILE DEVICES
 ===================================================== */
 
 @media (max-width: 991px) {
+  /* Navbar background */
 
-    /* Navbar background */
+  .navbar-custom {
+    padding: 14px 0;
+    background: rgba(23, 32, 27, 0.96);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
 
-    .navbar-custom {
-        padding: 14px 0;
-        background: rgba(23, 32, 27, .96);
-        box-shadow: 0 8px 28px rgba(0, 0, 0, .2);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        
-    }
+  /* Offcanvas content */
 
+  .offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 
-    /* Offcanvas content */
+    padding: 20px 24px 30px;
+  }
 
-    .offcanvas-body {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
+  /* Navigation links */
 
-        padding: 20px 24px 30px;
-    }
+  .navbar-links {
+    width: 100%;
 
+    gap: 0;
 
-    /* Navigation links */
+    margin: 10px 0 25px !important;
+  }
 
-    .navbar-links {
-        width: 100%;
+  .navbar-links .nav-link {
+    width: 100%;
 
-        gap: 0;
+    padding: 15px 4px !important;
 
-        margin: 10px 0 25px !important;
-    }
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
 
-    .navbar-links .nav-link {
-        width: 100%;
+  /* Mobile underline */
 
-        padding: 15px 4px !important;
+  .navbar-links .nav-link::after {
+    left: 4px;
+    bottom: 8px;
 
-        border-bottom: 1px solid rgba(255, 255, 255, .08);
-    }
+    transform: none;
+  }
 
+  .navbar-links .nav-link:hover::after,
+  .navbar-links .nav-link.active::after {
+    width: 45px;
+  }
 
-    /* Mobile underline */
+  /* Order button */
 
-    .navbar-links .nav-link::after {
-        left: 4px;
-        bottom: 8px;
+  .order-button,
+  .offcanvas .btn-dark {
+    width: 100%;
 
-        transform: none;
-    }
+    margin-top: auto;
 
-    .navbar-links .nav-link:hover::after,
-    .navbar-links .nav-link.active::after {
-        width: 45px;
-    }
+    padding: 13px 24px;
+  }
+}
 
+/* =====================================================
+              ACCOUNT AREA IN THE NAVBAR
+===================================================== */
 
-    /* Order button */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
 
-    .order-button,
-    .offcanvas .btn-dark {
-        width: 100%;
+.account-signin {
+  color: #ffffff;
+  font-weight: 600;
+  white-space: nowrap;
+}
 
-        margin-top: auto;
+.account-signin:hover {
+  color: var(--gold-light);
+}
 
-        padding: 13px 24px;
-    }
+/* هيكل رمادي أثناء التحقق من الجلسة، بدل وميض "Sign in". */
+.account-chip-skeleton {
+  display: block;
+  width: 74px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
 
+.account-toggle {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 0 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.account-toggle:hover {
+  color: var(--gold-light) !important;
+}
+
+.account-toggle svg {
+  font-size: 1.3rem;
+}
+
+.account-menu .dropdown-menu {
+  min-width: 232px;
+  padding: 8px;
+  border: 1px solid #ebe7df;
+  border-radius: 14px;
+  box-shadow: 0 18px 46px rgba(23, 32, 27, 0.18);
+}
+
+.account-menu .dropdown-header {
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+.account-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-size: 0.93rem;
+}
+
+.account-menu .dropdown-item svg {
+  color: var(--primary);
+}
+
+@media (max-width: 991px) {
+  .navbar-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .account-signin,
+  .account-toggle {
+    justify-content: center;
+    padding: 10px 0 !important;
+  }
 }
