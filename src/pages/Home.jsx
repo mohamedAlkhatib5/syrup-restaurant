@@ -288,7 +288,7 @@ function Home() {
           <span className="eyebrow">Dinner plans?</span>
           <h2>Bring the Syrup experience home.</h2>
           <p>Freshly prepared, carefully packed and delivered hot.</p>
-          <Link to="/order" className="btn-light-custom">
+          <Link to="/cart" className="btn-light-custom">
             Start your order
           </Link>
         </Container>

@@ -1,55 +1,53 @@
-
 .rounded-image {
-    width: 100%;
-    height: 580px;
-    object-fit: cover;
-    border-radius: 22px;
-    box-shadow: var(--shadow);
+  width: 100%;
+  height: 580px;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: var(--shadow);
 }
 
 .value-card {
-    height: 100%;
-    background: #ffffff;
-    padding: 40px 30px;
-    border-radius: 18px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, .06);
-    text-align: center;
+  height: 100%;
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+  text-align: center;
 }
 
 .value-card > div {
-    color: var(--primary);
-    font-size: 2rem;
-    margin-bottom: 18px;
+  color: var(--primary);
+  font-size: 2rem;
+  margin-bottom: 18px;
 }
 
 .value-card h3 {
-    font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .value-card p {
-    color: var(--muted);
+  color: var(--muted);
 }
 .soft-section {
-    background: var(--cream);
+  background: var(--cream);
 }
-
 
 /* =====================================================
               TABLET AND MOBILE DEVICES
 ===================================================== */
 
 @media (max-width: 991.98px) {
-    .rounded-image {
-        height: 420px;
-    }
+  .rounded-image {
+    height: 420px;
+  }
 }
 
 @media (max-width: 575.98px) {
-    .rounded-image {
-        height: 300px;
-    }
+  .rounded-image {
+    height: 300px;
+  }
 
-    .value-card {
-        padding: 22px;
-    }
+  .value-card {
+    padding: 22px;
+  }
 }

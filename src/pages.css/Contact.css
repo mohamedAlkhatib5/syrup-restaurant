@@ -3,66 +3,68 @@
 ===================================================== */
 
 .contact-item {
-    display: flex;
-    gap: 16px;
-    margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
 }
 
-.icon-item{
-    display: grid;
-    place-items: center;
-    flex: 0 0 48px;
-    width: 48px;
-    height: 48px;
-    background: var(--cream);
-    color: var(--primary);
-    border-radius: 50%;
+.icon-item {
+  display: grid;
+  place-items: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  background: var(--cream);
+  color: var(--primary);
+  border-radius: 50%;
 }
 
 .contact-item h4 {
-    font-size: 1rem;
-    margin: 3px 0;
+  font-size: 1rem;
+  margin: 3px 0;
 }
 
 .contact-item p {
-    margin: 0;
-    color: var(--muted);
+  margin: 0;
+  color: var(--muted);
 }
 
 .contact-form {
-    background: var(--dark);
-    padding: 42px;
-    border-radius: 20px;
+  background: var(--dark);
+  padding: 42px;
+  border-radius: 20px;
 }
 
 .contact-form .form-control,
 .contact-form .form-select {
-    min-height: 52px;
-    border: 1px solid #ded8cc;
-    border-radius: 10px;
+  min-height: 52px;
+  border: 1px solid #ded8cc;
+  border-radius: 10px;
 }
 
 .contact-form textarea.form-control {
-    min-height: 150px;
+  min-height: 150px;
 }
-Label{color: var(--cream);}
+Label {
+  color: var(--cream);
+}
 
 /* =====================================================
               TABLET AND MOBILE DEVICES
 ===================================================== */
 
 @media (max-width: 991.98px) {
-    .contact-form {
-        padding: 22px;
-    }
+  .contact-form {
+    padding: 22px;
+  }
 }
 
 @media (max-width: 575.98px) {
-    .contact-item {
-        gap: 12px;
-    }
+  .contact-item {
+    gap: 12px;
+  }
 
-    .contact-form {
-        padding: 18px;
-    }
+  .contact-form {
+    padding: 18px;
+  }
 }

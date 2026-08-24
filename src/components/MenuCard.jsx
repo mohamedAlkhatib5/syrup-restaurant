@@ -1,10 +1,22 @@
 import { FaPlus } from 'react-icons/fa';
 import useCart from '../hooks/useCart';
+import useToast from '../hooks/useToast';
 import { formatPrice } from '../utils/currency';
 import '../pages.css/MenuCard.css';
 // بطاقة طبق واحدة: تعرض الصورة والوصف والسعر وتضيف الطبق إلى السلة.
 function MenuCard({ item }) {
   const { addToCart } = useCart();
+  const { notify } = useToast();
+
+  const handleAdd = () => {
+    addToCart(item);
+    notify({
+      title: `${item.name} added`,
+      body: 'Open your basket to review the order.',
+      variant: 'success',
+    });
+  };
+
   return (
     <article className="dish-item h-100">
       <div className="dish-image-wrapper">
@@ -29,7 +41,11 @@ function MenuCard({ item }) {
         </div>
 
         <p className="dish-description mb-2">{item.description}</p>
-        <button onClick={() => addToCart(item)}>
+        <button
+          type="button"
+          onClick={handleAdd}
+          aria-label={`Add ${item.name} to your order`}
+        >
           {' '}
           <FaPlus /> Add to order
         </button>

@@ -1,0 +1,305 @@
+/* =====================================================
+       TOASTS, CART DRAWER AND MOBILE CART BAR
+   مكوّنات عامة تظهر فوق أي صفحة، لذلك تُحمّل مع الحزمة
+   الأولى بدل أن تُربط بصفحة بعينها.
+===================================================== */
+
+/* ------------------------- الإشعارات ------------------------ */
+
+.toast-stack {
+  position: fixed;
+  top: 88px;
+  right: 18px;
+  z-index: 1090;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(340px, calc(100vw - 36px));
+  pointer-events: none;
+}
+
+.toast-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid #ebe7df;
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+  box-shadow: 0 14px 38px rgba(23, 32, 27, 0.16);
+  pointer-events: auto;
+  animation: toast-in 0.28s ease-out;
+}
+
+.toast-item.toast-warning {
+  border-left-color: #d1852b;
+}
+
+.toast-icon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  background: var(--cream);
+  border-radius: 50%;
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+}
+
+.toast-warning .toast-icon {
+  color: #b8681a;
+}
+
+.toast-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.toast-body strong {
+  font-size: 0.94rem;
+  overflow-wrap: anywhere;
+}
+
+.toast-body span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.toast-item > button {
+  padding: 0 4px;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.toast-item > button:hover {
+  color: var(--dark);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-item {
+    animation: none;
+  }
+}
+
+/* ------------------------ درج السلة ------------------------ */
+
+.cart-drawer {
+  width: min(420px, 100vw) !important;
+}
+
+.cart-drawer .offcanvas-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+}
+
+.cart-drawer-count {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 8px;
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.cart-drawer .offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.cart-drawer-empty {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.cart-drawer-empty svg {
+  color: var(--primary);
+  font-size: 3.2rem;
+}
+
+.cart-drawer-empty p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.cart-drawer-list {
+  flex: 1;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0 20px;
+  list-style: none;
+}
+
+.cart-drawer-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f2efe9;
+}
+
+.cart-drawer-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cart-drawer-info {
+  min-width: 0;
+}
+
+.cart-drawer-info h3 {
+  margin: 0 0 2px;
+  font-size: 0.97rem;
+  overflow-wrap: anywhere;
+}
+
+.cart-drawer-info p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.cart-drawer-actions {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cart-drawer-footer {
+  padding: 20px;
+  background: #faf8f4;
+  border-top: 1px solid #ebe7df;
+}
+
+.cart-drawer-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+  font-size: 1.1rem;
+}
+
+.cart-drawer-total strong {
+  color: var(--primary-dark);
+}
+
+.cart-drawer-note {
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.cart-drawer-link {
+  display: block;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.cart-drawer-link:hover {
+  color: var(--primary-dark);
+}
+
+/* -------------------- شريط السلة للهاتف -------------------- */
+
+.mobile-cart-bar {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  z-index: 1035;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px;
+  background: var(--dark);
+  color: #ffffff;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 16px 40px rgba(23, 32, 27, 0.32);
+  cursor: pointer;
+  animation: cart-bar-in 0.3s ease-out;
+}
+
+.mobile-cart-count {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 8px;
+  background: var(--primary);
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.mobile-cart-label {
+  flex: 1;
+  text-align: left;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.mobile-cart-cta {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  white-space: nowrap;
+}
+
+@keyframes cart-bar-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .mobile-cart-bar {
+    display: flex;
+  }
+
+  .toast-stack {
+    top: 78px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-cart-bar {
+    animation: none;
+  }
+}

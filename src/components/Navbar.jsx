@@ -14,6 +14,7 @@ import {
 
 import '../pages.css/Navbar.css';
 import useCart from '../hooks/useCart';
+import useCartUI from '../hooks/useCartUI';
 
 import logo from '../assets/images/logo.webp';
 /* =====================================================
@@ -30,6 +31,7 @@ function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const { totalItems } = useCart();
+  const { openDrawer } = useCartUI();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -141,15 +143,22 @@ function Header() {
             {/* زر الطلب */}
 
             <Button
-              as={Link}
-              to="/order"
+              type="button"
               variant="dark"
               className="order-button"
-              onClick={handleCloseMenu}
+              onClick={() => {
+                handleCloseMenu();
+                openDrawer();
+              }}
+              aria-label={
+                totalItems === 1
+                  ? 'Open your basket, 1 item'
+                  : `Open your basket, ${totalItems} items`
+              }
             >
               <FaShoppingBag className="me-2" aria-hidden="true" />
               Order Now
-              <b aria-label={` items in your order`}>{totalItems}</b>
+              <b aria-hidden="true">{totalItems}</b>
             </Button>
           </Offcanvas.Body>
         </BootstrapNavbar.Offcanvas>

@@ -10,10 +10,10 @@ const DELIVERY_FEE = 10;
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
 // صفحة السلة: تتيح تعديل الكميات وحذف الأطباق وإظهار إجمالي الطلب.
-function Order() {
+function Cart() {
   const { cart, addToCart, decrease, removeFromCart, clearCart, totalPrice } = useCart();
 
-  useDocumentTitle('Order');
+  useDocumentTitle('Your basket');
   //  إنهاء الطلب ثم تفريغ السلة.
   const finishOrder = () => {
     if (!cart.length) return;
@@ -25,7 +25,7 @@ function Order() {
       <section className="page-header">
         <div className="page-header-overlay" />
         <div className="container position-relative">
-          <h1>Your Order</h1>
+          <h1>Your Basket</h1>
           <p>Review your selections and complete your order.</p>
         </div>
       </section>
@@ -115,4 +115,4 @@ function Order() {
     </>
   );
 }
-export default Order;
+export default Cart;

@@ -1,103 +1,100 @@
-
 /* =====================================================
                       ORDER PAGE
 ===================================================== */
 
 .order-list,
 .order-summary {
-    background: #ffffff;
-    border: 1px solid #ebe7df;
-    border-radius: 18px;
-    padding: 25px;
+  background: #ffffff;
+  border: 1px solid #ebe7df;
+  border-radius: 18px;
+  padding: 25px;
 }
 
 .order-item {
-    display: grid;
-    grid-template-columns: 90px 1fr auto auto auto;
-    align-items: center;
-    gap: 18px;
-    padding: 16px 0;
-    border-bottom: 1px solid #eeeeee;
+  display: grid;
+  grid-template-columns: 90px 1fr auto auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .order-item:last-child {
-    border-bottom: 0;
+  border-bottom: 0;
 }
 
 .order-item img {
-    width: 90px;
-    height: 75px;
-    object-fit: cover;
-    border-radius: 10px;
+  width: 90px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .order-info h3 {
-    font-size: 1.05rem;
-    margin: 0;
+  font-size: 1.05rem;
+  margin: 0;
 }
 
 .order-info p {
-    color: var(--muted);
-    margin: 5px 0 0;
+  color: var(--muted);
+  margin: 5px 0 0;
 }
 
 .quantity {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .quantity button,
 .delete-btn {
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: var(--cream);
-    border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: var(--cream);
+  border-radius: 50%;
 }
 
 .delete-btn {
-    color: #b53a2b;
+  color: #b53a2b;
 }
 
 .order-summary h3 {
-    font-family: "Playfair Display", serif;
-    margin-bottom: 25px;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 25px;
 }
 
 .order-summary > div {
-    display: flex;
-    justify-content: space-between;
-    margin: 14px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 14px 0;
 }
 
 .order-summary button {
-    width: 100%;
-    margin-top: 15px;
-    padding: 14px;
-    border: 0;
-    background: var(--primary);
-    color: #ffffff;
-    border-radius: 999px;
-    font-weight: 700;
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  border: 0;
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: 999px;
+  font-weight: 700;
 }
-
 
 /* =====================================================
                      EMPTY CART
 ===================================================== */
 
 .empty-cart {
-    padding: 80px 20px;
-    text-align: center;
+  padding: 80px 20px;
+  text-align: center;
 }
 
 .empty-icon {
-    color: var(--primary);
-    font-size: 5rem;
-    margin-bottom: 25px;
+  color: var(--primary);
+  font-size: 5rem;
+  margin-bottom: 25px;
 }
-
 
 /* =====================================================
               TABLET AND MOBILE DEVICES
@@ -106,80 +103,80 @@
 ===================================================== */
 
 @media (max-width: 767.98px) {
-    .order-list,
-    .order-summary {
-        padding: 18px;
-    }
+  .order-list,
+  .order-summary {
+    padding: 18px;
+  }
 
-    .order-item {
-        grid-template-columns: 72px 1fr auto;
-        grid-template-areas:
-            "image info  delete"
-            "image qty   total";
-        gap: 10px 14px;
-        padding: 18px 0;
-    }
+  .order-item {
+    grid-template-columns: 72px 1fr auto;
+    grid-template-areas:
+      'image info  delete'
+      'image qty   total';
+    gap: 10px 14px;
+    padding: 18px 0;
+  }
 
-    .order-item img {
-        grid-area: image;
-        width: 72px;
-        height: 72px;
-        align-self: start;
-    }
+  .order-item img {
+    grid-area: image;
+    width: 72px;
+    height: 72px;
+    align-self: start;
+  }
 
-    .order-info {
-        grid-area: info;
-        min-width: 0;
-    }
+  .order-info {
+    grid-area: info;
+    min-width: 0;
+  }
 
-    .order-info h3 {
-        font-size: 0.98rem;
-        overflow-wrap: anywhere;
-    }
+  .order-info h3 {
+    font-size: 0.98rem;
+    overflow-wrap: anywhere;
+  }
 
-    .quantity {
-        grid-area: qty;
-    }
+  .quantity {
+    grid-area: qty;
+  }
 
-    .order-item > strong {
-        grid-area: total;
-        justify-self: end;
-        align-self: center;
-        white-space: nowrap;
-    }
+  .order-item > strong {
+    grid-area: total;
+    justify-self: end;
+    align-self: center;
+    white-space: nowrap;
+  }
 
-    .delete-btn {
-        grid-area: delete;
-        justify-self: end;
-    }
+  .delete-btn {
+    grid-area: delete;
+    justify-self: end;
+  }
 }
 
 @media (max-width: 400px) {
-    .order-item {
-        grid-template-columns: 60px 1fr;
-        grid-template-areas:
-            "image info"
-            "image qty"
-            "total delete";
-    }
+  .order-item {
+    grid-template-columns: 60px 1fr;
+    grid-template-areas:
+      'image info'
+      'image qty'
+      'total delete';
+  }
 
-    .order-item img {
-        width: 60px;
-        height: 60px;
-    }
+  .order-item img {
+    width: 60px;
+    height: 60px;
+  }
 
-    .order-item > strong {
-        grid-area: total;
-        justify-self: start;
-    }
+  .order-item > strong {
+    grid-area: total;
+    justify-self: start;
+  }
 }
 
 /* الأزرار الدائرية يجب أن تبقى دائرية ولا تنكمش. */
 .quantity button,
 .delete-btn {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
