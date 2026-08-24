@@ -66,6 +66,7 @@ function Checkout() {
   const [position, setPosition] = useState(RESTAURANT.location);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+  const [placed, setPlaced] = useState(false);
 
   const [form, setForm] = useState({
     fullName: '',
@@ -180,6 +181,9 @@ function Checkout() {
         notes: form.notes.trim(),
       });
 
+      // تُرفع قبل تفريغ السلة حتى لا يسبق حارسُ السلة الفارغة
+      // الانتقالَ إلى صفحة التأكيد.
+      setPlaced(true);
       clearCart();
       notify({
         title: 'Order placed',
@@ -198,8 +202,9 @@ function Checkout() {
     }
   };
 
-  // لا معنى لصفحة دفع بسلة فارغة.
-  if (cart.length === 0) {
+  // لا معنى لصفحة دفع بسلة فارغة، إلا أثناء إرسال الطلب أو بعد نجاحه:
+  // عندها تكون السلة فارغة عمدًا والانتقال إلى صفحة التأكيد جارٍ.
+  if (cart.length === 0 && !submitting && !placed) {
     return <Navigate to="/cart" replace />;
   }
 

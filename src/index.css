@@ -31,6 +31,12 @@
 
 html {
   scroll-behavior: smooth;
+
+  /* النافبار ثابت ويحمل backdrop-filter، ما يجعله containing block
+     لعناصر position: fixed — فيدخل الـ Offcanvas المخفي (المُزاح خارج
+     الشاشة) في حساب عرض الصفحة. overflow-x: clip يقصّه دون أن يحوّل
+     html إلى حاوية تمرير، بخلاف overflow: hidden. */
+  overflow-x: clip;
 }
 
 body {
@@ -38,7 +44,7 @@ body {
   font-family: 'DM Sans', sans-serif;
   background: #ffffff;
   color: var(--dark);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a {

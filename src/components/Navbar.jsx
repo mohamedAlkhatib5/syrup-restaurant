@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 // icon
 import { FaUtensils, FaShoppingBag } from 'react-icons/fa';
 // css
@@ -21,6 +21,13 @@ import logo from '../assets/images/logo.webp';
                   HEADER COMPONENT
 ===================================================== */
 
+/**
+ * الصفحات التي تبدأ بقسم داكن كبير خلف النافبار.
+ * على غيرها يكون النافbar شفافًا فوق خلفية بيضاء، فتختفي روابطه
+ * البيضاء — لذلك نجعله معتمًا مباشرةً هناك.
+ */
+const ROUTES_WITH_HERO = ['/', '/menu', '/story', '/contact', '/cart', '/checkout'];
+
 function Header() {
   /* حالة فتح وإغلاق قائمة Offcanvas */
 
@@ -32,6 +39,10 @@ function Header() {
 
   const { totalItems } = useCart();
   const { openDrawer } = useCartUI();
+  const { pathname } = useLocation();
+
+  const hasHero = ROUTES_WITH_HERO.includes(pathname);
+  const isSolid = isScrolled || !hasHero;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,7 +82,7 @@ function Header() {
       onToggle={setShowMenu}
       className={`
                 navbar-custom
-                ${isScrolled ? 'navbar-scrolled' : ''}
+                ${isSolid ? 'navbar-scrolled' : ''}
             `}
     >
       <Container>
