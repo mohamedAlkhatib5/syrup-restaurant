@@ -1,7 +1,7 @@
 /* =====================================================
                     ROOT VARIABLES
 ===================================================== */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+@import './assets/fonts/fonts.css';
 
 :root {
   
@@ -275,4 +275,35 @@ main {
         padding: 150px 0 80px;
     }
 
+}
+
+/* =====================================================
+              ROUTE LOADING FALLBACK
+===================================================== */
+
+.route-fallback {
+  display: grid;
+  place-items: center;
+  min-height: 60vh;
+}
+
+.route-fallback-spinner {
+  width: 42px;
+  height: 42px;
+  border: 3px solid rgba(200, 155, 60, 0.25);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: route-fallback-spin 0.8s linear infinite;
+}
+
+@keyframes route-fallback-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-fallback-spinner {
+    animation-duration: 2.4s;
+  }
 }

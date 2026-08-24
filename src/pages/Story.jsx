@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaHeart, FaMedal, FaUsers } from 'react-icons/fa';
 import '../pages.css/story.css';
-import storysection from '../assets/images/storysection.jpg';
+import storysection from '../assets/images/storysection.webp';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
 const VALUES = [
@@ -41,6 +41,10 @@ function Story() {
                 src={storysection}
                 className="rounded-image"
                 alt="Elegant restaurant table"
+                width={1100}
+                height={733}
+                loading="lazy"
+                decoding="async"
               />
             </Col>
             <Col lg={6} data-aos="fade-left">

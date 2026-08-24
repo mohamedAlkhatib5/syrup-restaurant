@@ -32,3 +32,24 @@
 .soft-section {
     background: var(--cream);
 }
+
+
+/* =====================================================
+              TABLET AND MOBILE DEVICES
+===================================================== */
+
+@media (max-width: 991.98px) {
+    .rounded-image {
+        height: 420px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .rounded-image {
+        height: 300px;
+    }
+
+    .value-card {
+        padding: 22px;
+    }
+}

@@ -12,11 +12,10 @@ import {
   Offcanvas,
 } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '../pages.css/Navbar.css';
 import useCart from '../hooks/useCart';
 
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo.webp';
 /* =====================================================
                   HEADER COMPONENT
 ===================================================== */
@@ -84,7 +83,7 @@ function Header() {
           className="brand"
           onClick={handleCloseMenu}
         >
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" width={320} height={347} />
         </BootstrapNavbar.Brand>
 
         {/* =========================================
@@ -111,7 +110,8 @@ function Header() {
 
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="restaurant-offcanvas-title" className="offcanvas-title">
-              <FaUtensils className="me-2" />
+              <FaUtensils className="me-2" aria-hidden="true" />
+              <span className="visually-hidden">Syrup menu</span>
             </Offcanvas.Title>
           </Offcanvas.Header>
 
@@ -147,9 +147,9 @@ function Header() {
               className="order-button"
               onClick={handleCloseMenu}
             >
-              <FaShoppingBag className="me-2" />
+              <FaShoppingBag className="me-2" aria-hidden="true" />
               Order Now
-              <b>{totalItems}</b>
+              <b aria-label={` items in your order`}>{totalItems}</b>
             </Button>
           </Offcanvas.Body>
         </BootstrapNavbar.Offcanvas>

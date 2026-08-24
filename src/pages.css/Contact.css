@@ -46,3 +46,23 @@
     min-height: 150px;
 }
 Label{color: var(--cream);}
+
+/* =====================================================
+              TABLET AND MOBILE DEVICES
+===================================================== */
+
+@media (max-width: 991.98px) {
+    .contact-form {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .contact-item {
+        gap: 12px;
+    }
+
+    .contact-form {
+        padding: 18px;
+    }
+}

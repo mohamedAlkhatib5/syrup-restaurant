@@ -21,3 +21,10 @@
     font-size: 8rem;
     line-height: 1;
 }
+
+
+@media (max-width: 575.98px) {
+    .not-found {
+        padding: 90px 18px;
+    }
+}

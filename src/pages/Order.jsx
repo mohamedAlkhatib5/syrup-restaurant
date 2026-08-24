@@ -3,6 +3,10 @@ import { FaMinus, FaPlus, FaTrash, FaShoppingBasket } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import '../pages.css/order.css';
 import useCart from '../hooks/useCart';
+import { formatPrice } from '../utils/currency';
+
+// رسوم ثابتة مؤقتًا. ستأتي من إعدادات المطعم عبر الـ API لاحقًا.
+const DELIVERY_FEE = 10;
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
 // صفحة السلة: تتيح تعديل الكميات وحذف الأطباق وإظهار إجمالي الطلب.
@@ -43,26 +47,43 @@ function Order() {
                 <div className="order-list">
                   {cart.map((item) => (
                     <div className="order-item" key={item.id}>
-                      <img src={item.image} alt={item.name} />
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        width={90}
+                        height={75}
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <div className="order-info">
                         <h3>{item.name}</h3>
-                        <p>AED {item.price} each</p>
+                        <p>{formatPrice(item.price)} each</p>
                       </div>
                       <div className="quantity">
-                        <button onClick={() => decrease(item.id)}>
-                          <FaMinus />
+                        <button
+                          type="button"
+                          onClick={() => decrease(item.id)}
+                          aria-label={`Decrease quantity of ${item.name}`}
+                        >
+                          <FaMinus aria-hidden="true" />
                         </button>
                         <span>{item.quantity}</span>
-                        <button onClick={() => addToCart(item)}>
-                          <FaPlus />
+                        <button
+                          type="button"
+                          onClick={() => addToCart(item)}
+                          aria-label={`Increase quantity of ${item.name}`}
+                        >
+                          <FaPlus aria-hidden="true" />
                         </button>
                       </div>
-                      <strong>AED {item.price * item.quantity}</strong>
+                      <strong>{formatPrice(item.price * item.quantity)}</strong>
                       <button
+                        type="button"
                         className="delete-btn"
                         onClick={() => removeFromCart(item.id)}
+                        aria-label={`Remove  from your order`}
                       >
-                        <FaTrash />
+                        <FaTrash aria-hidden="true" />
                       </button>
                     </div>
                   ))}
@@ -73,16 +94,16 @@ function Order() {
                   <h3>Order summary</h3>
                   <div>
                     <span>Subtotal</span>
-                    <strong>AED {totalPrice}</strong>
+                    <strong>{formatPrice(totalPrice)}</strong>
                   </div>
                   <div>
                     <span>Delivery</span>
-                    <strong>AED 10</strong>
+                    <strong>{formatPrice(DELIVERY_FEE)}</strong>
                   </div>
                   <hr />
                   <div className="grand-total">
                     <span>Total</span>
-                    <strong>AED {totalPrice + 10}</strong>
+                    <strong>{formatPrice(totalPrice + DELIVERY_FEE)}</strong>
                   </div>
                   <button onClick={finishOrder}>Confirm order</button>
                 </div>

@@ -55,36 +55,54 @@ function Contact() {
             <Col lg={7}>
               <Form className="contact-form" onSubmit={handleSubmit} data-aos="fade-left">
                 <Row className="g-3">
-                  <Col md={6}>
+                  <Form.Group as={Col} md={6} controlId="contact-full-name">
                     <Form.Label>Full name</Form.Label>
-                    <Form.Control required placeholder="Your name" />
-                  </Col>
-                  <Col md={6}>
+                    <Form.Control
+                      name="fullName"
+                      autoComplete="name"
+                      required
+                      placeholder="Your name"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col} md={6} controlId="contact-email">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control required type="email" placeholder="name@example.com" />
-                  </Col>
-                  <Col md={6}>
+                    <Form.Control
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      placeholder="name@example.com"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col} md={6} controlId="contact-phone">
                     <Form.Label>Phone number</Form.Label>
-                    <Form.Control placeholder="+971" />
-                  </Col>
-                  <Col md={6}>
+                    <Form.Control
+                      name="phone"
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      placeholder="+971"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col} md={6} controlId="contact-subject">
                     <Form.Label>Subject</Form.Label>
-                    <Form.Select>
-                      <option>Table reservation</option>
-                      <option>Private event</option>
-                      <option>Large order</option>
-                      <option>General enquiry</option>
+                    <Form.Select name="subject" defaultValue="table_reservation">
+                      <option value="table_reservation">Table reservation</option>
+                      <option value="private_event">Private event</option>
+                      <option value="large_order">Large order</option>
+                      <option value="general_enquiry">General enquiry</option>
                     </Form.Select>
-                  </Col>
-                  <Col xs={12}>
+                  </Form.Group>
+                  <Form.Group as={Col} xs={12} controlId="contact-message">
                     <Form.Label>Message</Form.Label>
                     <Form.Control
+                      name="message"
                       as="textarea"
                       rows={6}
                       required
                       placeholder="How can we help?"
                     />
-                  </Col>
+                  </Form.Group>
                   <Col xs={12}>
                     <button className="btn-primary-custom border-0" type="submit">
                       Send message

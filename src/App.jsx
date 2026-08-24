@@ -1,38 +1,43 @@
-import { Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
-import Home from './pages/Home';
-import Story from './pages/Story';
-import Menu from './pages/Menu';
-import Contact from './pages/Contact';
-import Order from './pages/Order';
-import NotFound from './pages/NotFound';
-import Header from './components/Navbar';
-import Footer from './components/Footer';
+import { lazy, Suspense, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-// مكتبة الحركات
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import Footer from './components/Footer';
+import Header from './components/Navbar';
+import RouteFallback from './components/RouteFallback';
+
+// الصفحة الرئيسية تُحمّل مباشرة لأنها نقطة الدخول الأكثر زيارة،
+// وبقية الصفحات تُحمّل عند الطلب لتقليل حجم الحزمة الأولى.
+import Home from './pages/Home';
+
+const Story = lazy(() => import('./pages/Story'));
+const Menu = lazy(() => import('./pages/Menu'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Order = lazy(() => import('./pages/Order'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
 function App() {
-  // تشغيل مكتبة الحركات عند تحميل التطبيق لأول مرة.
   useEffect(() => {
-    AOS.init({
-      duration: 900,
-      once: true,
-      offset: 80,
-    });
+    AOS.init({ duration: 900, once: true, offset: 80 });
   }, []);
+
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/story" element={<Story />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/order" element={<Order />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+
+      <Suspense fallback={<RouteFallback />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/story" element={<Story />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+
       <Footer />
     </>
   );

@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import '../pages.css/footer.css';
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo.webp';
 
 function Footer() {
   return (
@@ -11,7 +11,14 @@ function Footer() {
         <Row className="g-4">
           <Col lg={4}>
             <div className="footer-brand  brand">
-              <img src={logo} alt="logo" />
+              <img
+                src={logo}
+                alt="logo"
+                width={320}
+                height={347}
+                loading="lazy"
+                decoding="async"
+              />
               {/* <h4>syrup</h4> */}
             </div>
             <p>

@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import { Row, Col, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -14,9 +13,9 @@ import 'swiper/css/pagination';
 import MenuCard from '../components/MenuCard';
 import { menuItems } from '../data/menu';
 // img
-import heroimg from '../assets/images/heroimg.jpg';
-import storysmall from '../assets/images/storysmall.jpg';
-import storymain from '../assets/images/storymain.jpg';
+import heroimg from '../assets/images/heroimg.webp';
+import storysmall from '../assets/images/storysmall.webp';
+import storymain from '../assets/images/storymain.webp';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
 const FEATURES = [
@@ -92,6 +91,11 @@ function Home() {
                   src={heroimg}
                   alt="Fresh artisan pizza"
                   className="hero-food-image"
+                  width={1400}
+                  height={933}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   data-aos="fade-up"
                 />
                 <div className="floating-card p-2">
@@ -222,8 +226,24 @@ function Home() {
           <Row className="align-items-center g-5">
             <Col lg={6} data-aos="fade-right">
               <div className="story-grid">
-                <img className="story-main" src={storymain} alt="Restaurant interior" />
-                <img className="story-small" src={storysmall} alt="Professional chef" />
+                <img
+                  className="story-main"
+                  src={storymain}
+                  alt="Restaurant interior"
+                  width={1000}
+                  height={667}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  className="story-small"
+                  src={storysmall}
+                  alt="Professional chef"
+                  width={700}
+                  height={1078}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </Col>
             <Col lg={6} data-aos="fade-left">

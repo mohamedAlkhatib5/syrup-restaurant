@@ -97,3 +97,89 @@
     font-size: 5rem;
     margin-bottom: 25px;
 }
+
+
+/* =====================================================
+              TABLET AND MOBILE DEVICES
+   شبكة صف الطلب أُنشئت بخمسة أعمدة ثابتة، وهي أعرض
+   من شاشة الهاتف. هنا نعيد ترتيبها إلى شبكة تلتف.
+===================================================== */
+
+@media (max-width: 767.98px) {
+    .order-list,
+    .order-summary {
+        padding: 18px;
+    }
+
+    .order-item {
+        grid-template-columns: 72px 1fr auto;
+        grid-template-areas:
+            "image info  delete"
+            "image qty   total";
+        gap: 10px 14px;
+        padding: 18px 0;
+    }
+
+    .order-item img {
+        grid-area: image;
+        width: 72px;
+        height: 72px;
+        align-self: start;
+    }
+
+    .order-info {
+        grid-area: info;
+        min-width: 0;
+    }
+
+    .order-info h3 {
+        font-size: 0.98rem;
+        overflow-wrap: anywhere;
+    }
+
+    .quantity {
+        grid-area: qty;
+    }
+
+    .order-item > strong {
+        grid-area: total;
+        justify-self: end;
+        align-self: center;
+        white-space: nowrap;
+    }
+
+    .delete-btn {
+        grid-area: delete;
+        justify-self: end;
+    }
+}
+
+@media (max-width: 400px) {
+    .order-item {
+        grid-template-columns: 60px 1fr;
+        grid-template-areas:
+            "image info"
+            "image qty"
+            "total delete";
+    }
+
+    .order-item img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .order-item > strong {
+        grid-area: total;
+        justify-self: start;
+    }
+}
+
+/* الأزرار الدائرية يجب أن تبقى دائرية ولا تنكمش. */
+.quantity button,
+.delete-btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
