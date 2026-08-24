@@ -5,6 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import CartDrawer from './components/CartDrawer';
+import DemoBanner from './components/DemoBanner';
 import Footer from './components/Footer';
 import MobileCartBar from './components/MobileCartBar';
 import Header from './components/Navbar';
@@ -82,6 +83,7 @@ function App() {
       <CartDrawer />
       <MobileCartBar />
       <ToastStack />
+      <DemoBanner />
     </>
   );
 }

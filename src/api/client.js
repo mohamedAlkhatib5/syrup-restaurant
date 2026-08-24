@@ -4,7 +4,17 @@
  * لا يستدعي أي مكوّن fetch مباشرة: كل ما يخص عنوان الـ API، وترويسة
  * المصادقة، وتجديد الرمز المنتهي، وشكل الأخطاء — يعيش هنا.
  */
+import { handleDemoRequest } from './demo-backend';
+
 const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:4000/api';
+
+/**
+ * الوضع التجريبي: نسخة من الـ API تعمل داخل المتصفح.
+ *
+ * تُفعَّل فقط في بناء العرض العام، حيث لا خادم ولا قاعدة بيانات.
+ * في التشغيل الحقيقي تبقى false ولا يُحمَّل أي شيء منها.
+ */
+export const IS_DEMO = import.meta.env.VITE_DEMO_MODE === 'true';
 
 /** خطأ يحمل رمز الحالة والرمز النصي القادمين من الخادم. */
 export class ApiError extends Error {
@@ -50,6 +60,19 @@ async function parse(response) {
 }
 
 async function send(path, { method = 'GET', body, signal, auth = true } = {}) {
+  if (IS_DEMO) {
+    try {
+      return await handleDemoRequest(method, path, body);
+    } catch (error) {
+      throw new ApiError(
+        error.status ?? 500,
+        error.code ?? 'demo_error',
+        error.message,
+        error.details
+      );
+    }
+  }
+
   const headers = { Accept: 'application/json' };
   if (body !== undefined) headers['Content-Type'] = 'application/json';
   if (auth && accessToken) headers.Authorization = `Bearer ${accessToken}`;
