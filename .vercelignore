@@ -1,0 +1,7 @@
+# الاستضافة تبني الواجهة فقط. ما يلي لا يدخل في البناء.
+server/
+docs/
+scripts/
+screenshots/
+*.md
+.github/
