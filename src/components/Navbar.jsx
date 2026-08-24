@@ -1,252 +1,161 @@
+import { useEffect, useState } from 'react';
 
-import { useEffect, useState } from "react";
-
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from 'react-router-dom';
 // icon
-import {
-    FaUtensils,
-    FaShoppingBag
-} from "react-icons/fa";
+import { FaUtensils, FaShoppingBag } from 'react-icons/fa';
 // css
 import {
-    Button,
-    Container,
-    Nav,
-    Navbar as BootstrapNavbar,
-    Offcanvas
-} from "react-bootstrap";
+  Button,
+  Container,
+  Nav,
+  Navbar as BootstrapNavbar,
+  Offcanvas,
+} from 'react-bootstrap';
 
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../pages.css/Navbar.css';
-import { useCart } from '../context/CartContext';
+import useCart from '../hooks/useCart';
 
-import logo from "../assets/images/logo.png";
+import logo from '../assets/images/logo.png';
 /* =====================================================
                   HEADER COMPONENT
 ===================================================== */
 
 function Header() {
+  /* حالة فتح وإغلاق قائمة Offcanvas */
 
-    /* حالة فتح وإغلاق قائمة Offcanvas */
+  const [showMenu, setShowMenu] = useState(false);
 
-    const [showMenu, setShowMenu] = useState(false);
+  /* حالة تغيير شكل النافبار عند النزول */
 
+  const [isScrolled, setIsScrolled] = useState(false);
 
-    /* حالة تغيير شكل النافبار عند النزول */
+  const { totalItems } = useCart();
 
-    const [isScrolled, setIsScrolled] = useState(false);
-
-    const { totalItems } = useCart()
-
-
-    useEffect(() => {
-
-        const handleScroll = () => {
-
-            if (window.scrollY > 50) {
-
-                setIsScrolled(true);
-
-            } else {
-
-                setIsScrolled(false);
-
-            }
-
-        };
-
-
-        window.addEventListener("scroll", handleScroll);
-
-
-        /* تنظيف الحدث عند إغلاق المكوّن */
-
-        return () => {
-
-            window.removeEventListener("scroll", handleScroll);
-
-        };
-
-    }, []);
-
-
-    /* فتح قائمة Offcanvas */
-
-    const handleShowMenu = () => {
-
-        setShowMenu(true);
-
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
 
+    window.addEventListener('scroll', handleScroll);
 
-    /* إغلاق قائمة Offcanvas */
+    /* تنظيف الحدث عند إغلاق المكوّن */
 
-    const handleCloseMenu = () => {
-
-        setShowMenu(false);
-
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
+  }, []);
 
+  /* فتح قائمة Offcanvas */
 
-    return (
+  const handleShowMenu = () => {
+    setShowMenu(true);
+  };
 
-        <BootstrapNavbar
-            expand="lg"
-            fixed="top"
-            expanded={showMenu}
-            onToggle={setShowMenu}
-            className={`
+  /* إغلاق قائمة Offcanvas */
+
+  const handleCloseMenu = () => {
+    setShowMenu(false);
+  };
+
+  return (
+    <BootstrapNavbar
+      expand="lg"
+      fixed="top"
+      expanded={showMenu}
+      onToggle={setShowMenu}
+      className={`
                 navbar-custom
-                ${isScrolled ? "navbar-scrolled" : ""}
+                ${isScrolled ? 'navbar-scrolled' : ''}
             `}
-        >
-
-            <Container>
-
-
-                {/* =========================================
+    >
+      <Container>
+        {/* =========================================
                                 LOGO
                 ========================================= */}
 
-                <BootstrapNavbar.Brand
-                    as={Link}
-                    to="/"
-                    className="brand"
-                    onClick={handleCloseMenu}
-                >
-                    <img src={logo} alt="logo" />
-            
-                   
+        <BootstrapNavbar.Brand
+          as={Link}
+          to="/"
+          className="brand"
+          onClick={handleCloseMenu}
+        >
+          <img src={logo} alt="logo" />
+        </BootstrapNavbar.Brand>
 
-                </BootstrapNavbar.Brand>
-
-
-                {/* =========================================
+        {/* =========================================
                           MOBILE TOGGLE BUTTON
                 ========================================= */}
 
-                <BootstrapNavbar.Toggle
-                    aria-controls="restaurant-offcanvas"
-                    onClick={handleShowMenu}
-                />
+        <BootstrapNavbar.Toggle
+          aria-controls="restaurant-offcanvas"
+          onClick={handleShowMenu}
+        />
 
-
-                {/* =========================================
+        {/* =========================================
                            OFFCANVAS MENU
                 ========================================= */}
 
-                <BootstrapNavbar.Offcanvas
-                    id="restaurant-offcanvas"
-                    aria-labelledby="restaurant-offcanvas-title"
-                    placement="end"
-                    show={showMenu}
-                    onHide={handleCloseMenu}
-                >
+        <BootstrapNavbar.Offcanvas
+          id="restaurant-offcanvas"
+          aria-labelledby="restaurant-offcanvas-title"
+          placement="end"
+          show={showMenu}
+          onHide={handleCloseMenu}
+        >
+          {/* رأس قائمة الهاتف */}
 
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id="restaurant-offcanvas-title" className="offcanvas-title">
+              <FaUtensils className="me-2" />
+            </Offcanvas.Title>
+          </Offcanvas.Header>
 
-                    {/* رأس قائمة الهاتف */}
+          {/* محتوى قائمة الهاتف والكمبيوتر */}
 
-                    <Offcanvas.Header closeButton>
+          <Offcanvas.Body>
+            {/* روابط التنقل */}
 
-                        <Offcanvas.Title
-                            id="restaurant-offcanvas-title"
-                            className="offcanvas-title"
-                        >
+            <Nav className="mx-auto navbar-links">
+              <Nav.Link as={NavLink} to="/" end onClick={handleCloseMenu}>
+                Home
+              </Nav.Link>
 
-                            <FaUtensils className="me-2" />
+              <Nav.Link as={NavLink} to="/story" onClick={handleCloseMenu}>
+                Our Story
+              </Nav.Link>
 
+              <Nav.Link as={NavLink} to="/menu" onClick={handleCloseMenu}>
+                Menu
+              </Nav.Link>
 
-                        </Offcanvas.Title>
+              <Nav.Link as={NavLink} to="/contact" onClick={handleCloseMenu}>
+                Contact
+              </Nav.Link>
+            </Nav>
 
-                    </Offcanvas.Header>
+            {/* زر الطلب */}
 
-
-                    {/* محتوى قائمة الهاتف والكمبيوتر */}
-
-                    <Offcanvas.Body>
-
-
-                        {/* روابط التنقل */}
-
-                        <Nav className="mx-auto navbar-links">
-
-                            <Nav.Link
-                                as={NavLink}
-                                to="/"
-                                end
-                                onClick={handleCloseMenu}
-                            >
-
-                                Home
-
-                            </Nav.Link>
-
-
-                            <Nav.Link
-                                as={NavLink}
-                                to="/Story"
-                                onClick={handleCloseMenu}
-                            >
-
-                                Our Story
-
-                            </Nav.Link>
-
-
-                            <Nav.Link
-                                as={NavLink}
-                                to="/Menu"
-                                onClick={handleCloseMenu}
-                            >
-
-                                Menu
-
-                            </Nav.Link>
-
-
-                            <Nav.Link
-                                as={NavLink}
-                                to="/Contact"
-                                onClick={handleCloseMenu}
-                            >
-
-                                Contact
-
-                            </Nav.Link>
-
-                        </Nav>
-
-
-                        {/* زر الطلب */}
-
-                        <Button
-                            as={Link}
-                            to="/Order"
-                            variant="dark"
-                            className="order-button"
-                            onClick={handleCloseMenu}
-                        >
-
-                            <FaShoppingBag className="me-2" />
-
-                            Order Now
-                            <b>{totalItems}</b>
-                        </Button>
-
-
-                    </Offcanvas.Body>
-
-                </BootstrapNavbar.Offcanvas>
-
-
-            </Container>
-
-        </BootstrapNavbar>
-
-    );
-
+            <Button
+              as={Link}
+              to="/order"
+              variant="dark"
+              className="order-button"
+              onClick={handleCloseMenu}
+            >
+              <FaShoppingBag className="me-2" />
+              Order Now
+              <b>{totalItems}</b>
+            </Button>
+          </Offcanvas.Body>
+        </BootstrapNavbar.Offcanvas>
+      </Container>
+    </BootstrapNavbar>
+  );
 }
-
-
 
 export default Header;

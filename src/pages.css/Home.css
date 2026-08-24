@@ -570,7 +570,7 @@
             rgba(17, 25, 20, .82),
             rgba(17, 25, 20, .86)
         ),
-        url("src/assets/images/cta-section.jpg")
+        url("../assets/images/cta-section.jpg")
         center / cover fixed;
 }
 
